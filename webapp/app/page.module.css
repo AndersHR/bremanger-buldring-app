@@ -1,0 +1,21 @@
+.page {
+  width: clamp(320px, 100%, 800px);
+  margin-block: 16px;
+  margin-inline: auto;
+}
+
+.feed {
+  display: flex;
+  justify-content: center;
+}
+
+.boulder {
+  width: clamp(300px, 100%, 600px);
+}
+
+.boulder img {
+  width: clamp(200px, 100%, 400px);
+  height: clamp(200px, 100%, 400px);
+  margin-block: 12px;
+  margin-right: auto;
+}

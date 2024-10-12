@@ -1,22 +1,18 @@
 import Image from "next/image";
-import { BoulderCard, SingleBoulderCard } from "./ui/boulder-card";
+import styles from "./page.module.css";
+import { BoulderCard, SingleBoulderCard } from "./ui/boulderCard";
 import { fetchBoulderById } from "./lib/data";
-import { BoulderTable } from "./ui/boulder-table";
+import { BoulderTable } from "./ui/boulderTable";
+import { fetchActiveBoulders } from "./lib/supabase/data";
 
 export default async function Home() {
 
-  const boulder = await fetchBoulderById("1");
+  const boulders = await fetchActiveBoulders();
 
   return (
-    <div>
-      {/*
-      <div className="grid grid-cols-1 items-center place-items-center">
-        <SingleBoulderCard boulder={boulder} />
-      </div>
-      */}
-
-      <div className="grid grid-cols-1 items-center justify-items-center">
-        <BoulderTable boulders={[boulder, boulder]} />
+    <div className={styles.page}>
+      <div className={styles.feed}>
+        <BoulderTable boulders={boulders} />
       </div>
     </div>
   );

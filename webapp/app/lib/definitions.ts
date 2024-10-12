@@ -1,4 +1,5 @@
 export enum BoulderGrade {
+    UBESTEMT = "Ubestemt",
     THREE = '3',
     FOUR = '4',
     FOURPLUS = '4+',
@@ -25,21 +26,31 @@ export enum BoulderGrade {
     NINEA = '9A',
 }
 
+export enum BoulderStatus {
+    CLIMBED = "Besteget",
+    PROJECT = "Prosjekt",
+    INACTIVE = "Inaktiv",
+    DELETED = "Slettet",
+}
+
 export type Boulder = {
     id: string,
     name: string,
     grade: BoulderGrade,
     description: string,
-    location: string,
-    first_ascender: string,
-    first_ascent: Date,
-    boulder_group_id: string,
+    location_longitude: number | null,
+    location_latitude: number | null,
+    first_ascender: string | null,
+    first_ascent: Date | null,
+    boulder_group_id: string | null,
     // Image URLS
-    image_base_url: string,
-    image_line_url: string,
+    image_base_url: string | null,
+    image_line_url: string | null,
     // Metadata
     created_at: Date | null,
     updated_at: Date | null,
+    deleted_at: Date | null,
+    status: BoulderStatus,
 }
 
 export type BoulderGroup = {
