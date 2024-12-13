@@ -5,6 +5,17 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary-color: #306263;
+  --text-color: #ffffff;
+  --margin-xxs: 0.25rem;
+  --margin-xs: 0.5rem;
+  --margin-s: 0.75rem;
+  --margin-m: 1rem;
+  --margin-l: 1.25rem;
+  --margin-xl: 1.75rem;
+  --margin-xxl: 2.5rem;
+
+  --font-size-heading: 1.5rem;
 }
 
 @media (prefers-color-scheme: dark) {

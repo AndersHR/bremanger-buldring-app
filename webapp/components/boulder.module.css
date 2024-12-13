@@ -1,0 +1,62 @@
+.feed {
+  display: flex;
+  justify-content: center;
+}
+
+.boulderTableContainer {
+  display: flex;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* TODO: Fjern padding fra første element og border fra siste element
+.boulderTableContainer:first-child {
+  padding-top: 0;
+}
+*/
+
+.boulder {
+  width: clamp(300px, 100%, 600px);
+}
+
+.boulderHeader {
+  display: flex;
+  align-items: center;
+  /* margin-bottom: var(--margin-xxs); */
+}
+
+.boulderHeader > h3 {
+  font-size: var(--font-size-heading);
+  margin-left: 0.25rem;
+  margin-block: var(--margin-xs);
+}
+
+.boulderImgWrapper {
+  display: flex;
+  background-color: #f0f0f0;
+  width: clamp(200px, 100%, 600px);
+  aspect-ratio: 1;
+  justify-items: center;
+  align-items: center;
+  margin-block: var(--margin-xxs);
+  margin-inline: auto;
+  overflow: hidden;
+}
+
+.boulderImgWrapper > a {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.boulderGroupLabel {
+  font-size: 1.25rem;
+  margin-bottom: var(--margin-xxs);
+}
+
+.boulderInfo {
+  margin-block: var(--margin-xxs);
+}

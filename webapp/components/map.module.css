@@ -1,0 +1,17 @@
+.custom-icon-container {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #3498db; /* Add border color */
+  border-radius: 50%; /* Make it circular */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white; /* Optional: Add a background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Optional: Add shadow for better visibility */
+}
+
+.custom-icon-container img {
+  width: 32px; /* Adjust to fit within the border */
+  height: 32px;
+  border-radius: 50%; /* Match the border radius */
+}

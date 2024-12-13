@@ -1,0 +1,103 @@
+import { Boulder, BoulderStatus } from "../lib/definitions";
+import { format } from "date-fns";
+import styles from "./boulder.module.css";
+import BackButton from "@/ui/BackButton";
+import Image from "next/image";
+
+export function BoulderCard({
+  boulder,
+  mode,
+}: {
+  boulder: Boulder;
+  mode: "list" | "single";
+}) {
+  const isListMode = mode === "list";
+
+  return (
+    <div className={styles.boulder}>
+      <div className={styles.boulderHeader}>
+        {!isListMode && <BackButton />}
+        <h3>
+          <b>{`${boulder.name}`}</b>
+        </h3>
+      </div>
+      {isListMode ? (
+        <a href={`/bulder/${boulder.id}`}>
+          <BoulderImage boulder={boulder} />
+        </a>
+      ) : (
+        <BoulderImage boulder={boulder} />
+      )}
+      {!isListMode && boulder.boulder_group_name && (
+        <BoulderGroupLabel boulder={boulder} />
+      )}
+      <div className={styles.boulderInfo}>
+        {!(boulder.status == BoulderStatus.PROJECT) ? (
+          <p>
+            <b>Gradering:</b> {boulder.grade}
+          </p>
+        ) : (
+          <p>PROSJEKT</p>
+        )}
+        <p>
+          <b>Start:</b> {boulder.start}
+        </p>
+        {!isListMode && (
+          <p>
+            <b>Førstebestigning:</b> {boulder.first_ascender}
+            {boulder.first_ascent
+              ? ` - ${format(boulder.first_ascent, "dd.MM.yyyy")}`
+              : ""}
+          </p>
+        )}
+        <p>
+          {<b>Beskrivelse:</b>} {`${boulder.description}`}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function BoulderGroupLabel({ boulder }: { boulder: Boulder }) {
+  return (
+    <div className={styles.boulderGroupLabel}>
+      <a href={`/samling/${boulder.boulder_group_id}`}>
+        <i>{boulder.boulder_group_name}</i>
+      </a>
+    </div>
+  );
+}
+
+function BoulderImage({ boulder }: { boulder: Boulder }) {
+  return (
+    <div className={styles.boulderImgWrapper}>
+      <Image
+        src={boulder.image_base_url ? boulder.image_base_url : ""}
+        alt={`Bilde av bulder ${boulder.name}`}
+        layout="intrinsic"
+        objectFit="contain"
+        objectPosition="center"
+        width={600}
+        height={600}
+      />
+    </div>
+  );
+}
+
+{
+  /* <div className={styles.boulderImgWrapper}>
+        {isListMode ? (
+          <a href={`/bulder/${boulder.id}`}>
+            <img
+              src={boulder.image_base_url ? boulder.image_base_url : ""}
+              alt={`Bilde av bulder ${boulder.name}`}
+            />
+          </a>
+        ) : (
+          <img
+            src={boulder.image_base_url ? boulder.image_base_url : ""}
+            alt={`Bilde av bulder ${boulder.name}`}
+          />
+        )}
+      </div> */
+}

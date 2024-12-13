@@ -1,0 +1,17 @@
+.backButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-block: var(--margin-xxs);
+  margin-right: var(--margin-xs);
+  width: 24px;
+  height: 24px;
+}
+
+.backButtonIcon {
+  width: 24px;
+  height: 24px;
+}
