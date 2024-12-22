@@ -6,7 +6,7 @@ export default async function Header() {
   const supabase = await createClient();
   const { data, error } = await supabase.auth.getUser();
 
-  error && console.error(error);
+  if (error) console.error(error);
 
   return (
     <header className={styles.header}>
