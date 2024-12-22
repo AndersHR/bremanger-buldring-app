@@ -1,12 +1,12 @@
 import styles from "@/app/page.module.css";
 import { fetchBoulderById } from "@/lib/supabase/data";
-import { BoulderCard } from "@/components/BoulderCard";
+import { BoulderCard } from "@/components/boulder/BoulderCard";
 import dynamic from "next/dynamic";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const boulder = await fetchBoulderById(params.id);
   const SingleBoulderMap = dynamic(
-    () => import("@/components/SingleBoulderMap"),
+    () => import("@/components/kart/SingleBoulderMap"),
     { ssr: false }
   );
 

@@ -1,7 +1,7 @@
-import { Boulder, BoulderStatus } from "../lib/definitions";
+import { Boulder, BoulderStatus } from "../../lib/definitions";
 import { format } from "date-fns";
 import styles from "./boulder.module.css";
-import BackButton from "@/ui/BackButton";
+import BackButton from "@/components/ui/BackButton";
 import Image from "next/image";
 
 export function BoulderCard({
@@ -16,10 +16,11 @@ export function BoulderCard({
   return (
     <div className={styles.boulder}>
       <div className={styles.boulderHeader}>
-        {!isListMode && <BackButton />}
-        <h3>
-          <b>{`${boulder.name}`}</b>
-        </h3>
+        <div className={styles.boulderHeaderTitle}>
+          {!isListMode && <BackButton />}
+          <h3>{`${boulder.name}`}</h3>
+        </div>
+        <div className={styles.boulderHeaderGrade}>{`${boulder.grade}`}</div>
       </div>
       {isListMode ? (
         <a href={`/bulder/${boulder.id}`}>
@@ -72,13 +73,12 @@ function BoulderImage({ boulder }: { boulder: Boulder }) {
   return (
     <div className={styles.boulderImgWrapper}>
       <Image
-        src={boulder.image_base_url ? boulder.image_base_url : ""}
+        src={boulder.image_base_url || ""}
         alt={`Bilde av bulder ${boulder.name}`}
-        layout="intrinsic"
+        layout="fill"
         objectFit="contain"
         objectPosition="center"
-        width={600}
-        height={600}
+        loading="lazy"
       />
     </div>
   );

@@ -1,5 +1,5 @@
 import styles from "./page.module.css";
-import { BoulderTable } from "../components/BoulderTable";
+import { BoulderTable } from "../components/boulder/BoulderTable";
 import { fetchBoulders } from "../lib/supabase/data";
 
 export default async function Home() {
@@ -13,7 +13,7 @@ export default async function Home() {
     if (name2 == null) {
       return -1;
     }
-    return name1.localeCompare(name2);
+    return -1 * name1.localeCompare(name2);
   });
 
   return (
@@ -30,12 +30,6 @@ export default async function Home() {
             />
           </div>
         ))}
-        <a
-          href="https://www.flaticon.com/free-icons/left-arrow"
-          title="left arrow icons"
-        >
-          Left arrow icons created by Freepik - Flaticon
-        </a>
       </div>
     </div>
   );

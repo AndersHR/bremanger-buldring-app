@@ -4,18 +4,71 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-  --primary-color: #306263;
+  --foreground: var(--color-black);
+  /* --primary-color: #306263; */
   --text-color: #ffffff;
-  --margin-xxs: 0.25rem;
-  --margin-xs: 0.5rem;
-  --margin-s: 0.75rem;
-  --margin-m: 1rem;
-  --margin-l: 1.25rem;
-  --margin-xl: 1.75rem;
-  --margin-xxl: 2.5rem;
 
+  /* Colors */
+  /* --primary-color: #3f7cac; */
+  --primary-color: #0b132b;
+
+  --primary-color-light: #6596bc;
+  --primary-color-lighter: #8bb0cd;
+  --primary-color-lightest: #b2cadd;
+
+  --primary-color-dark: #326389;
+  --primary-color-darker: #254a67;
+  --primary-color-darkest: #193144;
+
+  --secondary-color: #c17c74; /* Old rose */
+  /* --tertiary-color: #e2f89c; Mindaro */
+  --tertiary-color: #eac435; /* Saffron */
+  --quaternary-color: #21a179; /* Jungle Green */
+
+  --color-black: #172121;
+  --color-black-light: #213030;
+  --color-black-lighter: #293d3d;
+  --color-black-lightest: #314949;
+
+  --color-gray-0: hsl(0, 0%, 0%);
+  --color-gray-10: hsl(0, 0%, 10%);
+  --color-gray-30: hsl(0, 0%, 30%);
+  --color-gray-50: hsl(0, 0%, 50%);
+  --color-gray-70: hsl(0, 0%, 70%);
+  --color-gray-90: hsl(0, 0%, 90%);
+
+  /* Spacings */
+  --spacing-xxs: 0.25rem;
+  --spacing-xs: 0.5rem;
+  --spacing-s: 0.75rem;
+  --spacing-m: 1rem;
+  --spacing-l: 1.25rem;
+  --spacing-xl: 1.75rem;
+  --spacing-xxl: 2.5rem;
+  --spacing-3xl: 3.5rem;
+
+  /* Font sizes */
   --font-size-heading: 1.5rem;
+
+  /* Font Sizes */
+  --font-size-xxs: 0.625rem; /* 10px */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-md: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-5xl: 3rem; /* 48px */
+  --font-size-6xl: 3.75rem; /* 60px */
+
+  /* Font Weights */
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
 }
 
 @media (prefers-color-scheme: dark) {

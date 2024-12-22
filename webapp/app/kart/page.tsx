@@ -2,7 +2,7 @@ import styles from "@/app/page.module.css";
 import dynamic from "next/dynamic";
 
 export default async function Page() {
-  const OverviewMap = dynamic(() => import("@/components/OverviewMap"), {
+  const OverviewMap = dynamic(() => import("@/components/kart/OverviewMap"), {
     ssr: false,
   });
 
