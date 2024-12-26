@@ -3,14 +3,44 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: var(--color-black);
+  --background: var(--primary-color);
+  --foreground: var(--secondary-color);
   /* --primary-color: #306263; */
-  --text-color: #ffffff;
+  --text-color: var(--primary-color);
 
   /* Colors */
+  --primary-color: #ffffff; /* White */
+
+  --primary-color-dark: #f0f0f0;
+  --primary-color-darker: #e0e0e0;
+  --primary-color-darkest: #d0d0d0;
+
+  --secondary-color: #0b132b; /* Oxford Blue */
+
+  --secondary-color-light: #232a40;
+  --secondary-color-lighter: #3b4255;
+  --secondary-color-lightest: #54596a;
+
+  --tertiary-color: #eac435; /* Saffron */
+
+  --tertiary-color-dark: #d2b02f;
+  --tertiary-color-darker: #bb9c2a;
+  --tertiary-color-darkest: #a38925;
+
+  --tertiary-color-light: #eecf5d;
+  --tertiary-color-lighter: #f2db85;
+  --tertiary-color-lightest: #f6e7ae;
+
+  --quaternary-color: #21a179; /* Jungle Green */
+
+  --quinary-color: #3772ff; /* Blue (Crayola) */
+
+  /* --info-color */
+  /* --warning-color */
+  /* --error-color */
+
   /* --primary-color: #3f7cac; */
-  --primary-color: #0b132b;
+  /* --primary-color: #0b132b;
 
   --primary-color-light: #6596bc;
   --primary-color-lighter: #8bb0cd;
@@ -18,12 +48,12 @@
 
   --primary-color-dark: #326389;
   --primary-color-darker: #254a67;
-  --primary-color-darkest: #193144;
+  --primary-color-darkest: #193144; */
 
-  --secondary-color: #c17c74; /* Old rose */
+  /* --secondary-color: #c17c74; Old rose */
   /* --tertiary-color: #e2f89c; Mindaro */
-  --tertiary-color: #eac435; /* Saffron */
-  --quaternary-color: #21a179; /* Jungle Green */
+  /* --tertiary-color: #eac435; Saffron */
+  /* --quaternary-color: #21a179; Jungle Green */
 
   --color-black: #172121;
   --color-black-light: #213030;
@@ -46,6 +76,10 @@
   --spacing-xl: 1.75rem;
   --spacing-xxl: 2.5rem;
   --spacing-3xl: 3.5rem;
+  --spacing-4xl: 4.5rem;
+
+  /* Border radius */
+  --border-radius: 0.25rem;
 
   /* Font sizes */
   --font-size-heading: 1.5rem;
@@ -71,16 +105,16 @@
   --font-weight-black: 900;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--secondary-color);
+  background: var(--primary-color);
   font-family: Arial, Helvetica, sans-serif;
 }
 

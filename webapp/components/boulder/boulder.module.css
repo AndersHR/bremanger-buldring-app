@@ -46,7 +46,7 @@
 
 .boulderImgWrapper {
   display: flex;
-  background-color: #f0f0f0;
+  background-color: var(--primary-color-dark);
   width: 100%;
   aspect-ratio: 1;
   position: relative;

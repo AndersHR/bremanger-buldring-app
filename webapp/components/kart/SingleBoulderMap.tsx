@@ -20,7 +20,7 @@ const esriWorldImageryTileLayer = (
 
 const SingleBoulderMap = ({ boulder, height, width }: OverviewMapProps) => {
   const markerIcon = new L.Icon({
-    iconUrl: "/softteal/icons8-marker-with-stroke-96.png",
+    iconUrl: "/softteal-tertiary-color/icons8-location-96-outline.png",
     iconSize: [32, 32],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32],

@@ -1,12 +1,10 @@
 .content {
-  margin-top: var(--spacing-3xl);
-  padding-block: 20px;
+  margin-top: var(--spacing-4xl);
   flex-grow: 1;
 }
 
 .background {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   min-height: 100vh;
 }

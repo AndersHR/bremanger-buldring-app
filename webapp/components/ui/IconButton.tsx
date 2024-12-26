@@ -9,8 +9,8 @@ export default function IconButton({
   icon,
   ariaLabel,
   handleClick,
-  width = "24px",
-  height = "24px",
+  width = "32px",
+  height = "32px",
 }: {
   type: Type;
   icon: string;
@@ -22,33 +22,58 @@ export default function IconButton({
   return (
     <button
       onClick={handleClick}
-      className={styles.iconButton}
+      className={`${styles.iconButton}`}
       aria-label={ariaLabel}
-      style={{ width, height }}
     >
-      <img
-        className={styles.iconButtonImage}
-        src={`/softteal-${type}-color/${icon}`}
-        alt={ariaLabel}
+      <IconImage
+        type={type}
+        icon={icon}
+        ariaLabel={ariaLabel}
+        width={width}
+        height={height}
       />
     </button>
   );
 }
 
+export function IconImage({
+  type,
+  icon,
+  ariaLabel,
+  width = "32px",
+  height = "32px",
+}: {
+  type: Type;
+  icon: string;
+  ariaLabel: string;
+  width?: string;
+  height?: string;
+}) {
+  return (
+    <img
+      className={styles.iconButtonImage}
+      src={`/softteal-${type}-color/${icon}`}
+      alt={ariaLabel}
+      style={{ width, height }}
+    />
+  );
+}
+
 export type Type = "primary" | "secondary" | "tertiary" | "white";
 
-export function MenuButton() {
-  const handleMenuClick = () => {
-    console.log("Menu clicked");
-  };
+export function MenuButton({
+  onClick,
+  menuVisible,
+}: {
+  onClick: () => void;
+  menuVisible: boolean;
+}) {
   return (
     <IconButton
       type="tertiary"
-      handleClick={handleMenuClick}
-      icon="/icons8-menu-96-outline.png"
+      handleClick={onClick}
+      icon={menuVisible ? "/icons8-close-96.png" : "/icons8-menu-96.png"}
       ariaLabel="Tilbake"
-      width="24px"
-      height="24px"
     />
   );
 }
@@ -62,10 +87,8 @@ export function ProfileButton() {
     <IconButton
       type="tertiary"
       handleClick={handleProfileClick}
-      icon="/icons8-customer-96-outline.png"
+      icon="/icons8-customer-96.png"
       ariaLabel="Tilbake"
-      width="24px"
-      height="24px"
     />
   );
 }
@@ -81,8 +104,6 @@ export function LoginButton() {
       handleClick={handleLoginClick}
       icon="/icons8-login-96.png"
       ariaLabel="Logg inn"
-      width="24px"
-      height="24px"
     />
   );
 }
