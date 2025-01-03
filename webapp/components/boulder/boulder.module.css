@@ -4,15 +4,20 @@
 }
 
 .boulderTableContainer {
-  padding-block: var(--spacing-m);
+  padding-block: var(--spacing-s);
+  padding-inline: var(--spacing-m);
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid var(--quaternary-color);
 }
 
-/* .boulderTableContainer:first-child {
+.boulderTableContainer:first-child {
   padding-top: 0;
-} */
+}
+
+.boulderTableContainer:last-child {
+  border-bottom: 0;
+}
 
 .boulder {
   width: clamp(300px, 100%, 600px);
@@ -20,21 +25,17 @@
 }
 
 .boulderHeader {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  grid-template-columns: space-between;
   align-items: center;
   margin-block: var(--spacing-s);
 }
 
-.boulderHeaderTitle {
-  display: flex;
-  align-items: center;
-}
-
-.boulderHeaderTitle > h3 {
+.boulderHeader > h3 {
+  flex: 1;
   font-size: var(--font-size-heading);
   font-weight: var(--font-weight-bold);
-  margin-left: 0.25rem;
+  margin-inline: var(--margin-xxs);
   margin-block: var(--margin-xxs);
 }
 
@@ -79,4 +80,24 @@
 
 .boulderInfo > b {
   font-weight: var(--font-weight-bold);
+}
+
+.boulderForm {
+  padding: var(--spacing-xs);
+}
+
+.boulderFromLatlongWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: var(--spacing-xs);
+  justify-content: space-between;
+  /* margin-block: var(--spacing-xxs); */
+}
+
+.boulderFormButtonWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: var(--spacing-xs);
+  justify-content: space-between;
+  margin-block: var(--spacing-s);
 }

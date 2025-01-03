@@ -15,11 +15,11 @@
   --primary-color-darker: #e0e0e0;
   --primary-color-darkest: #d0d0d0;
 
-  --secondary-color: #0b132b; /* Oxford Blue */
+  --secondary-color: #011936; /* Oxford Blue */
 
-  --secondary-color-light: #232a40;
-  --secondary-color-lighter: #3b4255;
-  --secondary-color-lightest: #54596a;
+  --secondary-color-light: #33465e;
+  --secondary-color-lighter: #667586;
+  --secondary-color-lightest: #99a3ae;
 
   --tertiary-color: #eac435; /* Saffron */
 
@@ -33,32 +33,24 @@
 
   --quaternary-color: #21a179; /* Jungle Green */
 
+  --quaternary-color-dark: #1a8060;
+  --quaternary-color-darker: #136048;
+  --quaternary-color-darkest: #0d4030;
+
+  --quaternary-color-light: #4db393;
+  --quaternary-color-lighter: #79c6ae;
+  --quaternary-color-lightest: #a6d9c9;
+
   --quinary-color: #3772ff; /* Blue (Crayola) */
 
-  /* --info-color */
-  /* --warning-color */
-  /* --error-color */
+  --info-color: #3772ff; /* Blue (Crayola) */
+  --warning-color: var(--tertiary-color); /* Saffron */
+  --error-color: #cc3f0c; /* Sinopia */
 
-  /* --primary-color: #3f7cac; */
-  /* --primary-color: #0b132b;
-
-  --primary-color-light: #6596bc;
-  --primary-color-lighter: #8bb0cd;
-  --primary-color-lightest: #b2cadd;
-
-  --primary-color-dark: #326389;
-  --primary-color-darker: #254a67;
-  --primary-color-darkest: #193144; */
-
-  /* --secondary-color: #c17c74; Old rose */
-  /* --tertiary-color: #e2f89c; Mindaro */
-  /* --tertiary-color: #eac435; Saffron */
-  /* --quaternary-color: #21a179; Jungle Green */
-
-  --color-black: #172121;
+  /* --color-black: #172121;
   --color-black-light: #213030;
   --color-black-lighter: #293d3d;
-  --color-black-lightest: #314949;
+  --color-black-lightest: #314949; */
 
   --color-gray-0: hsl(0, 0%, 0%);
   --color-gray-10: hsl(0, 0%, 10%);
@@ -66,6 +58,7 @@
   --color-gray-50: hsl(0, 0%, 50%);
   --color-gray-70: hsl(0, 0%, 70%);
   --color-gray-90: hsl(0, 0%, 90%);
+  --color-gray-95: hsl(0, 0%, 95%);
 
   /* Spacings */
   --spacing-xxs: 0.25rem;
@@ -77,9 +70,6 @@
   --spacing-xxl: 2.5rem;
   --spacing-3xl: 3.5rem;
   --spacing-4xl: 4.5rem;
-
-  /* Border radius */
-  --border-radius: 0.25rem;
 
   /* Font sizes */
   --font-size-heading: 1.5rem;
@@ -103,6 +93,17 @@
   --font-weight-regular: 400;
   --font-weight-bold: 700;
   --font-weight-black: 900;
+
+  /* Border radius */
+  --border-radius: 0.25rem;
+
+  /* Component specific variables */
+  --input-border: 1px solid var(--secondary-color-light);
+
+  --button-disabled-color: hsl(0, 0%, 80%);
+  --button-disabled-font-color: var(--secondary-color-light);
+
+  --button-border: 2px solid;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -122,4 +123,16 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+input:focus {
+  outline-color: var(--tertiary-color);
+}
+
+select:focus {
+  outline-color: var(--tertiary-color);
+}
+
+textarea:focus {
+  outline-color: var(--tertiary-color);
 }

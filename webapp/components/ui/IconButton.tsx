@@ -9,6 +9,7 @@ export default function IconButton({
   icon,
   ariaLabel,
   handleClick,
+  backgroundColor,
   width = "32px",
   height = "32px",
 }: {
@@ -16,6 +17,7 @@ export default function IconButton({
   icon: string;
   ariaLabel: string;
   handleClick: () => void;
+  backgroundColor?: string;
   width?: string;
   height?: string;
 }) {
@@ -24,6 +26,11 @@ export default function IconButton({
       onClick={handleClick}
       className={`${styles.iconButton}`}
       aria-label={ariaLabel}
+      style={{
+        backgroundColor: backgroundColor ?? "transparent",
+        minHeight: height,
+        minWidth: width,
+      }}
     >
       <IconImage
         type={type}
@@ -73,6 +80,7 @@ export function MenuButton({
       type="tertiary"
       handleClick={onClick}
       icon={menuVisible ? "/icons8-close-96.png" : "/icons8-menu-96.png"}
+      backgroundColor={menuVisible ? "var(--secondary-color-light)" : undefined}
       ariaLabel="Tilbake"
     />
   );
@@ -100,7 +108,7 @@ export function LoginButton() {
   };
   return (
     <IconButton
-      type="secondary"
+      type="tertiary"
       handleClick={handleLoginClick}
       icon="/icons8-login-96.png"
       ariaLabel="Logg inn"

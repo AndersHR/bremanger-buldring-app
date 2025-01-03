@@ -29,12 +29,47 @@
   }
 }
 
+.footer {
+  background-color: var(--quaternary-color);
+  color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-m);
+  box-sizing: border-box;
+  min-height: 100px;
+  max-height: 200px;
+  flex-shrink: 0;
+}
+
+.footerContent {
+  display: block;
+  width: fit-content;
+  max-width: 600px;
+  text-align: left;
+}
+
+/* Buttons and inputs */
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid;
+  border-radius: var(--border-radius);
+  padding-block: var(--spacing-xxs);
+  padding-inline: var(--spacing-s);
+  font-weight: var(--font-weight-bold);
+}
+
 .iconButton {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: transparent;
   border: none;
+  border-radius: var(--border-radius);
   cursor: pointer;
   margin-block: var(--spacing-xxs);
   margin-inline: var(--spacing-xs);
@@ -62,28 +97,118 @@
 .iconButtonImage {
   width: 100%;
   height: 100%;
+  object-fit: scale-down;
 }
 
-.footer {
-  background-color: var(--quaternary-color);
-  color: white;
+.inputError {
+  color: var(--error-color);
+  margin-inline: var(--spacing-xxs);
+  font-size: var(--font-size-s);
+}
+
+.inputLabel {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+}
+
+.textInput {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid var(--color-gray-70);
+  border-radius: var(--border-radius); */
+  /* padding: var(--spacing-xs); */
+  margin-block: var(--spacing-xxs);
+  /* margin-inline: var(--spacing-xs); */
+}
+
+.textInput input {
+  border: var(--input-border);
   width: 100%;
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-md);
+}
+
+.textInput textarea {
+  border: var(--input-border);
+  width: 100%;
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-md);
+  resize: none;
+}
+
+.selectInput {
+  display: flex;
+  flex-direction: column;
+  margin-block: var(--spacing-xxs);
+  /* margin-inline: var(--spacing-xs); */
+}
+
+.selectInput select {
+  border: var(--input-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-xs);
+}
+
+.boulderGroupInputWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-block: var(--spacing-xxs);
+  /* margin-inline: var(--spacing-xs); */
+}
+
+.boulderGroupInput {
+  border: var(--input-border);
+  border-radius: var(--border-radius);
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: var(--spacing-m);
-  box-sizing: border-box;
-  min-height: 100px;
-  max-height: 200px;
-  flex-shrink: 0;
 }
 
-.footerContent {
-  display: block;
-  width: fit-content;
-  max-width: 600px;
-  text-align: left;
+.boulderGroupInput input {
+  width: 100%;
+  font-size: var(--font-size-md);
+  padding: var(--spacing-xs);
 }
+
+.boulderGroupSelectedInput {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-size: var(--font-size-md);
+  padding: var(--spacing-xs);
+  font-weight: var(--font-weight-bold);
+}
+
+.boulderGroupSelectedInputValue {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.boulderGroupDropdown {
+  margin-inline: var(--spacing-xs);
+}
+
+.boulderGroupDropdownItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-xs);
+  border: 1px solid var(--secondary-color-lightest);
+  border-radius: var(--border-radius);
+  margin-block: var(--spacing-xxs);
+}
+
+.boulderGroupDropdownItemCreateNew {
+  color: var(--tertiary-color);
+  font-weight: var(--font-weight-black);
+  white-space: nowrap;
+  margin-left: var(--spacing-xs);
+}
+
+/* Navbar */
 
 .navbar {
   position: fixed;

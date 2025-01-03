@@ -49,9 +49,6 @@ export type BoulderRaw = {
   longitude: number | null;
   latitude: number | null;
   boulder_group_id: string | null;
-  boulder_groups: {
-    name: string;
-  };
   // First ascent
   first_ascender: string | null;
   first_ascent: Date | null;
@@ -65,16 +62,19 @@ export type BoulderRaw = {
   status: BoulderStatus;
 };
 
-export type Boulder = Omit<BoulderRaw, "boulder_groups"> & {
+export type Boulder = BoulderRaw & {
   boulder_group_name: string | null;
 };
 
-export type BoulderGroup = {
-  id: string;
+export type BoulderGroupRaw = {
   name: string;
   description: string | null;
   latitude: number | null;
   longitude: number | null;
+};
+
+export type BoulderGroup = BoulderGroupRaw & {
+  id: string;
 };
 
 export type BoulderGroupWithBoulders = {
@@ -85,3 +85,5 @@ export type BoulderGroupWithBoulders = {
   longitude: number | null;
   boulders: Boulder[];
 };
+
+export type ErrorWithMessage = { error: boolean; message: string };

@@ -14,6 +14,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   if (boulder == null) {
     throw new Error("Boulder not found");
   }
+
   return (
     <div className={styles.pageLayout}>
       <div className={styles.page}>

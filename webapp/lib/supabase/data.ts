@@ -119,3 +119,25 @@ export async function fetchBoulderGroupById(id: string) {
     throw error;
   }
 }
+
+export async function fetchFilteredBoulderGroups(searchTerm: string) {
+  try {
+    const { data, error }: PostgrestResponse<BoulderGroup> = await supabase
+      .from("boulder_groups")
+      .select("*")
+      .ilike("name", `%${searchTerm}%`);
+
+    if (error) {
+      throw error;
+    }
+
+    const boulder_groups: BoulderGroup[] = data.map((item: BoulderGroup) =>
+      mapBoulderGroup(item)
+    );
+
+    return boulder_groups;
+  } catch (error) {
+    console.error("Error fetching boulder group", error);
+    throw error;
+  }
+}

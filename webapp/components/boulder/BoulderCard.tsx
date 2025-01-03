@@ -16,10 +16,8 @@ export function BoulderCard({
   return (
     <div className={styles.boulder}>
       <div className={styles.boulderHeader}>
-        <div className={styles.boulderHeaderTitle}>
-          {!isListMode && <BackButton />}
-          <h3>{`${boulder.name}`}</h3>
-        </div>
+        {!isListMode && <BackButton />}
+        <h3>{`${boulder.name}`}</h3>
         <div className={styles.boulderHeaderGrade}>{`${boulder.grade}`}</div>
       </div>
       {isListMode ? (
