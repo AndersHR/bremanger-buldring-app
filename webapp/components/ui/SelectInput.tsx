@@ -1,24 +1,29 @@
+import { ErrorWithMessage } from "@/lib/definitions";
+import InputWrapper from "./InputWrapper";
 import styles from "./ui.module.css";
 
 export default function SelectInput({
   label,
+  value,
   values,
-  defaultValue,
+  onChange,
+  error,
 }: {
   label: string;
+  value: string;
   values: string[];
-  defaultValue?: string;
+  onChange: (value: string) => void;
+  error?: ErrorWithMessage;
 }) {
   return (
-    <div className={styles.selectInput}>
-      <label className={styles.inputLabel}>{label}</label>
-      <select defaultValue={defaultValue}>
+    <InputWrapper label={label} error={error}>
+      <select value={value} onChange={(e) => onChange(e.target.value)}>
         {values.map((value) => (
           <option key={value} value={value}>
             {value}
           </option>
         ))}
       </select>
-    </div>
+    </InputWrapper>
   );
 }

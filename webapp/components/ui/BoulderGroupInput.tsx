@@ -1,19 +1,30 @@
-import { BoulderGroup, BoulderGroupRaw } from "@/lib/definitions";
-import { useState, useEffect } from "react";
-import styles from "./ui.module.css";
+import {
+  BoulderGroup,
+  BoulderGroupRaw,
+  ErrorWithMessage,
+} from "@/lib/definitions";
 import { fetchFilteredBoulderGroups } from "@/lib/supabase/data";
+import { useEffect, useState } from "react";
 import IconButton from "./IconButton";
+import styles from "./ui.module.css";
 
 export default function BoulderGroupInput({
+  boulderGroup,
   onBoulderGroupChange,
+  error,
 }: {
+  boulderGroup: BoulderGroup | BoulderGroupRaw | null;
   onBoulderGroupChange: (
-    boulderGroup: BoulderGroup | BoulderGroupRaw | null
+    boulderGroup:
+      | { boulderGroup: BoulderGroup; isNew: false }
+      | { boulderGroup: BoulderGroupRaw; isNew: true }
+      | null
   ) => void;
+  error?: ErrorWithMessage;
 }) {
-  const [inputValue, setInputValue] = useState<string>("");
-  const [selectedBoulderGroup, setSelectedBoulderGroup] =
-    useState<BoulderGroup | null>(null);
+  const [inputValue, setInputValue] = useState<string>(
+    boulderGroup?.name ?? ""
+  );
   const [filteredBoulderGroups, setFilteredBoulderGroups] = useState<
     BoulderGroup[]
   >([]);
@@ -30,7 +41,7 @@ export default function BoulderGroupInput({
     const fetchFilteredBoulderGroupResults = async () => {
       const boulderGroups = await fetchFilteredBoulderGroups(inputValue);
       setFilteredBoulderGroups(boulderGroups);
-      if (boulderGroups.length > 0 && selectedBoulderGroup === null) {
+      if (boulderGroups.length > 0 && boulderGroup === null) {
         setShowDropdown(true);
       }
     };
@@ -45,20 +56,20 @@ export default function BoulderGroupInput({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     if (
-      selectedBoulderGroup &&
-      inputValue.trim().toLowerCase() !==
-        selectedBoulderGroup.name.toLowerCase()
+      boulderGroup &&
+      inputValue.trim().toLowerCase() !== boulderGroup.name.toLowerCase()
     ) {
-      setSelectedBoulderGroup(null);
+      onBoulderGroupChange(null);
     }
   };
 
-  const handleSelect = (boulderGroup: BoulderGroup) => {
-    setInputValue(boulderGroup.name);
-    setSelectedBoulderGroup(boulderGroup);
+  const handleSelect = (selectedBoulderGroup: BoulderGroup) => {
+    setInputValue(selectedBoulderGroup.name);
+    onBoulderGroupChange({
+      boulderGroup: selectedBoulderGroup,
+      isNew: false,
+    });
     setShowDropdown(false);
-
-    onBoulderGroupChange(boulderGroup);
   };
 
   const handleSelectCreateNew = () => {
@@ -66,20 +77,22 @@ export default function BoulderGroupInput({
     setShowDropdown(false);
 
     onBoulderGroupChange({
-      name: inputValue.trim(),
-    } as BoulderGroupRaw);
+      boulderGroup: {
+        name: inputValue.trim(),
+      } as BoulderGroupRaw,
+      isNew: true,
+    });
   };
 
   const handleCancelSelection = () => {
     setInputValue("");
     setCreateNew(false);
-    setSelectedBoulderGroup(null);
 
     onBoulderGroupChange(null);
   };
 
   function boulderGroupIsSelected() {
-    return selectedBoulderGroup || createNew;
+    return boulderGroup || createNew;
   }
 
   function showCreateNewBoulderGroupOption() {
@@ -90,7 +103,7 @@ export default function BoulderGroupInput({
         filteredBoulderGroups[0].name.toLowerCase() ===
           inputValue.trim().toLowerCase()
       ) &&
-      (filteredBoulderGroups.length === 0 || selectedBoulderGroup === null)
+      (filteredBoulderGroups.length === 0 || boulderGroup === null)
     );
   }
 
@@ -149,6 +162,7 @@ export default function BoulderGroupInput({
           )}
         </div>
       )}
+      {error && <div className={styles.error}>{error.message}</div>}
     </div>
   );
 }

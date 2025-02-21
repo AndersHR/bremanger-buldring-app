@@ -41,7 +41,6 @@ export enum BoulderStart {
 }
 
 export type BoulderRaw = {
-  id: string;
   name: string;
   grade: BoulderGrade;
   start: BoulderStart;
@@ -49,21 +48,24 @@ export type BoulderRaw = {
   longitude: number | null;
   latitude: number | null;
   boulder_group_id: string | null;
+  status: BoulderStatus;
   // First ascent
   first_ascender: string | null;
   first_ascent: Date | null;
   // Image URLS
   image_base_url: string | null;
   image_line_url: string | null;
+};
+
+export type BoulderResponse = Boulder & { boulder_groups: { name: string } };
+
+export type Boulder = BoulderRaw & {
+  id: string;
+  boulder_group_name: string | null;
   // Metadata
   created_at: Date | null;
   updated_at: Date | null;
   deleted_at: Date | null;
-  status: BoulderStatus;
-};
-
-export type Boulder = BoulderRaw & {
-  boulder_group_name: string | null;
 };
 
 export type BoulderGroupRaw = {

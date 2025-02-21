@@ -1,27 +1,62 @@
 # bremanger-buldring-app
 
-### Frontnend
+# Environment variables
 
-### Database migrations
-
-Set environment variables in /db/.env:
+In webapp/ create the following .env-file:
 
 ```
-DB_USER=<db admin user>
-DB_PSWD=<db admin password>
-DB_HOST=<db hosturl>
-DB_PORT=<db port, default is 5432>
-DB_NAME=<db name, default is postgres>
+NEXT_PUBLIC_SUPABASE_URL=<supabase project url>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<supabase api key>
 ```
 
-Navigate to ./db
+## Getting Started
+
+Navigate to the webapp:
+
+`cd webapp`
+
+Run the development server:
+
+```bash
+pnpm i
+
+pnpm run dev
+```
+
+# Flyway
+
+Install flyway:
+
+`brew install flyway`
+
+Create the following .env file in db/
+
+```
+DB_USER=<brukernavn for databasen>
+DB_PSWD=<passord for databasen>
+DB_HOST=<hostnavn>
+DB_PORT=<port>
+DB_NAME=<databasenavn>
+```
+
+Install the dotenv cli globally:
+
+`npm install -g dotenv`
+
+Navigate to db/:
 
 `cd db`
 
-On initial run, start with baseline:
-
-`dotenv -e .env.local -- flyway baseline`
-
 Run migrations:
 
-`dotenv -e .env.local -- flyway migrate`
+`dotenv -e .env -- flyway migrate`
+
+The very first time you will ned to run baseline before migrate:
+
+`dotenv -e .env -- flyway baseline`
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

@@ -5,7 +5,11 @@ export default async function Page() {
   return (
     <div className={styles.page}>
       <div className={styles.boulderView}>
-        <BoulderForm mode="create" />
+        <BoulderForm
+          mode="create"
+          initialBoulderGroup={null}
+          initialBoulder={null}
+        />
       </div>
     </div>
   );

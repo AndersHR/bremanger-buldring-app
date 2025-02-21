@@ -1,5 +1,6 @@
 import { ErrorWithMessage } from "@/lib/definitions";
 import styles from "./ui.module.css";
+import InputWrapper from "./InputWrapper";
 
 export default function TextInput({
   type = "text",
@@ -17,8 +18,7 @@ export default function TextInput({
   error?: ErrorWithMessage;
 }) {
   return (
-    <div className={styles.textInput}>
-      <label className={styles.inputLabel}>{label}</label>
+    <InputWrapper label={label} error={error}>
       {type === "textarea" ? (
         <textarea
           rows={5}
@@ -48,9 +48,6 @@ export default function TextInput({
           }
         />
       )}
-      {error?.error && (
-        <div className={styles.inputError}>{error?.message}</div>
-      )}
-    </div>
+    </InputWrapper>
   );
 }

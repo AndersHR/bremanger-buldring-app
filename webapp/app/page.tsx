@@ -1,6 +1,6 @@
-import styles from "./page.module.css";
 import { BoulderTable } from "../components/boulder/BoulderTable";
 import { fetchBoulders } from "../lib/supabase/data";
+import styles from "./page.module.css";
 
 export default async function Home() {
   const boulders = await fetchBoulders();

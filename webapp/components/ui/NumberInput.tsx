@@ -1,29 +1,35 @@
 import { ErrorWithMessage } from "@/lib/definitions";
-import styles from "./ui.module.css";
+import InputWrapper from "./InputWrapper";
 
 export default function NumberInput({
-  type = "text",
   label,
   value,
   placeholder,
   onChange,
   error,
 }: {
-  type?: "text" | "number" | "textarea";
   label: string;
-  value?: number;
+  value: number | null;
   placeholder: string;
-  onChange: (value: string) => void;
+  onChange: (value: number | null) => void;
   error?: ErrorWithMessage;
 }) {
+  function handleChange(value: string) {
+    const parsedValue = parseFloat(value);
+    if (value === "" || value === null) {
+      onChange(null);
+    }
+    if (!isNaN(parsedValue)) {
+      onChange(parsedValue);
+    }
+  }
   return (
-    <div className={styles.textInput}>
-      <label className={styles.inputLabel}>{label}</label>
+    <InputWrapper label={label} error={error}>
       <input
         type={"number"}
-        value={value}
+        value={value ?? undefined}
         placeholder={placeholder}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => handleChange(e.target.value)}
         style={
           error?.error
             ? {
@@ -32,9 +38,6 @@ export default function NumberInput({
             : {}
         }
       />
-      {error?.error && (
-        <div className={styles.inputError}>{error?.message}</div>
-      )}
-    </div>
+    </InputWrapper>
   );
 }
