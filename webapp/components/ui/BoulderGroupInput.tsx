@@ -48,8 +48,6 @@ export default function BoulderGroupInput({
 
     const debounceFetch = setTimeout(fetchFilteredBoulderGroupResults, 300);
 
-    console.log(filteredBoulderGroups);
-
     return () => clearTimeout(debounceFetch);
   }, [inputValue]);
 

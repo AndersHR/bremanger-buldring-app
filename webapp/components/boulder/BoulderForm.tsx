@@ -113,7 +113,7 @@ export default function BoulderForm({
         }
       } else {
         if (initialBoulder?.id) {
-          const result = await updateBoulder(initialBoulder.id, boulderRaw);
+          await updateBoulder(initialBoulder.id, boulderRaw);
           router.push(`/bulder/${initialBoulder.id}`);
         } else {
           console.error("No boulder id found for update");

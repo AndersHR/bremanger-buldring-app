@@ -1,6 +1,5 @@
 import { ErrorWithMessage } from "@/lib/definitions";
 import InputWrapper from "./InputWrapper";
-import styles from "./ui.module.css";
 
 export default function SelectInput({
   label,

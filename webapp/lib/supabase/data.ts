@@ -51,8 +51,6 @@ export async function fetchBoulders(): Promise<Boulder[]> {
       .select("*, boulder_groups(name)")
       .in("status", [BoulderStatus.CLIMBED, BoulderStatus.PROJECT]);
 
-    console.log("DATA:", data);
-
     if (error) {
       throw error;
     }
@@ -202,19 +200,4 @@ export async function updateBoulder(id: string, boulder: BoulderRaw) {
   }
 
   return data;
-}
-
-export async function isBoulderAdmin(userId: string) {
-  const { data, error } = await supabase
-    .from("boulder_admins")
-    .select("user_id")
-    .eq("user_id", userId)
-    .single();
-
-  if (error) {
-    console.error("Error checking admin status:", error);
-    return false;
-  }
-
-  return !!data; // Returns true if user is found
 }
