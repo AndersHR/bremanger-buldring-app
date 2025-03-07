@@ -1,15 +1,18 @@
-import { Boulder, BoulderStatus } from "../../lib/definitions";
-import { format } from "date-fns";
-import styles from "./boulder.module.css";
 import BackButton from "@/components/ui/BackButton";
+import { format } from "date-fns";
 import Image from "next/image";
+import { Boulder, BoulderStatus } from "../../lib/definitions";
+import EditButton from "../ui/EditButton";
+import styles from "./boulder.module.css";
 
 export function BoulderCard({
   boulder,
   mode,
+  isAdmin,
 }: {
   boulder: Boulder;
   mode: "list" | "single";
+  isAdmin?: boolean;
 }) {
   const isListMode = mode === "list";
 
@@ -19,6 +22,9 @@ export function BoulderCard({
         {!isListMode && <BackButton />}
         <h3>{`${boulder.name}`}</h3>
         <div className={styles.boulderHeaderGrade}>{`${boulder.grade}`}</div>
+        {!isListMode && isAdmin && (
+          <EditButton href={`${boulder.id}/rediger`} />
+        )}
       </div>
       {isListMode ? (
         <a href={`/bulder/${boulder.id}`}>
