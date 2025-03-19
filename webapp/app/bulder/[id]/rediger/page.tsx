@@ -1,3 +1,5 @@
+"use server";
+
 import styles from "@/app/page.module.css";
 import BoulderForm from "@/components/boulder/BoulderForm";
 import { fetchBoulderById, fetchBoulderGroupById } from "@/lib/supabase/data";
@@ -16,6 +18,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   const boulderGroup = boulder?.boulder_group_id
     ? await fetchBoulderGroupById(boulder.boulder_group_id)
     : null;
+
   // const SingleBoulderMap = dynamic(
   //   () => import("@/components/kart/SingleBoulderMap"),
   //   { ssr: false }

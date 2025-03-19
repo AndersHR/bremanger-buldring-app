@@ -1,14 +1,21 @@
 "use client";
 
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import L, { LeafletMouseEvent } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-import { Boulder } from "@/lib/definitions";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMapEvents,
+} from "react-leaflet";
 
 export type OverviewMapProps = {
-  boulder: Boulder;
+  latitude: number | null;
+  longitude: number | null;
   height: string;
   width: string;
+  onClick?: (e: LeafletMouseEvent) => void;
 };
 
 const esriWorldImageryTileLayer = (
@@ -18,7 +25,13 @@ const esriWorldImageryTileLayer = (
   />
 );
 
-const SingleBoulderMap = ({ boulder, height, width }: OverviewMapProps) => {
+const SingleBoulderMap = ({
+  latitude,
+  longitude,
+  height,
+  width,
+  onClick,
+}: OverviewMapProps) => {
   const markerIcon = new L.Icon({
     iconUrl: "/softteal-tertiary-color/icons8-location-96-outline.png",
     iconSize: [32, 32],
@@ -26,18 +39,28 @@ const SingleBoulderMap = ({ boulder, height, width }: OverviewMapProps) => {
     popupAnchor: [0, -32],
   });
   const position: L.LatLngTuple =
-    boulder.latitude && boulder.longitude
-      ? [boulder.latitude, boulder.longitude]
-      : [0, 0];
+    latitude && longitude ? [latitude, longitude] : [0, 0];
+
+  const MapClickHandler = () => {
+    useMapEvents({
+      click: (e) => {
+        if (onClick) {
+          onClick(e);
+        }
+      },
+    });
+    return null;
+  };
 
   return (
     <div>
-      {boulder.latitude && boulder.longitude && (
+      {latitude && longitude && (
         <MapContainer
           center={position}
           zoom={16}
           style={{ height: height, width: width }}
         >
+          <MapClickHandler />
           {esriWorldImageryTileLayer}
           <Marker position={position} icon={markerIcon}>
             <Popup>Test</Popup>

@@ -5,7 +5,9 @@ import { createClient } from "@/lib/supabase/server";
 import dynamic from "next/dynamic";
 
 export default async function Page({ params }: { params: { id: string } }) {
+  console.log("MOUNTED");
   const boulder = await fetchBoulderById(params.id);
+
   const supabase = await createClient();
   const { data: isAdmin } = await supabase.rpc("is_boulder_admin");
 
@@ -25,7 +27,12 @@ export default async function Page({ params }: { params: { id: string } }) {
         <div className={styles.boulderView}>
           <BoulderCard boulder={boulder} isAdmin={isAdmin} mode="single" />
           <div className={styles.singleBoulderMapWrapper}>
-            <SingleBoulderMap boulder={boulder} height="400px" width="100%" />
+            <SingleBoulderMap
+              latitude={boulder.latitude}
+              longitude={boulder.longitude}
+              height="400px"
+              width="100%"
+            />
           </div>
         </div>
       </div>

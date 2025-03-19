@@ -15,6 +15,7 @@ import {
   getOrCreateBoulderGroup,
   updateBoulder,
 } from "@/lib/supabase/data";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { z } from "zod";
@@ -41,6 +42,11 @@ export default function BoulderForm({
 }) {
   const router = useRouter();
 
+  const SingleBoulderMap = dynamic(
+    () => import("@/components/kart/SingleBoulderMap"),
+    { ssr: false }
+  );
+
   function initializeBoulderFormData(boulder: Boulder | null): BoulderFormData {
     return {
       name: boulder?.name ?? "",
@@ -58,7 +64,7 @@ export default function BoulderForm({
     };
   }
 
-  const [formData, setFormData] = useState<BoulderFormData>(
+  const [formData, setFormData] = useState<BoulderFormData>(() =>
     initializeBoulderFormData(initialBoulder)
   );
   const [errors, setErrors] = useState<z.inferFlattenedErrors<
@@ -115,6 +121,7 @@ export default function BoulderForm({
         if (initialBoulder?.id) {
           await updateBoulder(initialBoulder.id, boulderRaw);
           router.push(`/bulder/${initialBoulder.id}`);
+          router.refresh();
         } else {
           console.error("No boulder id found for update");
         }
@@ -240,7 +247,7 @@ export default function BoulderForm({
           type="submit"
           text="Lagre"
           mode={ButtonMode.tertiary}
-          onClick={() => console.log("Lagre")}
+          onClick={() => handleSubmit}
           width="100%"
         />
         <Button
@@ -251,6 +258,19 @@ export default function BoulderForm({
           width="100%"
         />
       </div>
+      <SingleBoulderMap
+        latitude={formData.latitude}
+        longitude={formData.longitude}
+        height="400px"
+        width="100%"
+        onClick={(e) => {
+          setFormData({
+            ...formData,
+            latitude: e.latlng.lat,
+            longitude: e.latlng.lng,
+          });
+        }}
+      />
     </form>
   );
 }
@@ -317,3 +337,5 @@ function formatError(errors?: string[]): ErrorWithMessage | undefined {
     return undefined;
   }
 }
+
+export const MemoizedBoulderForm = React.memo(BoulderForm);

@@ -188,7 +188,10 @@ export async function createBoulder(
   return data?.id;
 }
 
-export async function updateBoulder(id: string, boulder: BoulderRaw) {
+export async function updateBoulder(
+  id: string,
+  boulder: BoulderRaw
+): Promise<null> {
   const { data, error } = await supabase
     .from("boulders")
     .update(boulder)
