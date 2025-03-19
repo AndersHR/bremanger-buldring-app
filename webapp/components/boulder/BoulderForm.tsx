@@ -15,10 +15,10 @@ import {
   getOrCreateBoulderGroup,
   updateBoulder,
 } from "@/lib/supabase/data";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { z } from "zod";
+import SingleBoulderMap from "../kart/SingleBoulderMapWrapper";
 import BoulderGroupInput from "../ui/BoulderGroupInput";
 import Button, { ButtonMode } from "../ui/Button";
 import DateInput from "../ui/DateInput";
@@ -42,10 +42,10 @@ export default function BoulderForm({
 }) {
   const router = useRouter();
 
-  const SingleBoulderMap = dynamic(
-    () => import("@/components/kart/SingleBoulderMap"),
-    { ssr: false }
-  );
+  // const SingleBoulderMap = dynamic(
+  //   () => import("@/components/kart/SingleBoulderMap"),
+  //   { ssr: false }
+  // );
 
   function initializeBoulderFormData(boulder: Boulder | null): BoulderFormData {
     return {

@@ -1,20 +1,13 @@
 import styles from "@/app/page.module.css";
 import { BoulderCard } from "@/components/boulder/BoulderCard";
+import SingleBoulderMap from "@/components/kart/SingleBoulderMapWrapper";
 import { fetchBoulderById } from "@/lib/supabase/data";
 import { createClient } from "@/lib/supabase/server";
-import dynamic from "next/dynamic";
 
 export default async function Page({ params }: { params: { id: string } }) {
-  console.log("MOUNTED");
   const boulder = await fetchBoulderById(params.id);
-
   const supabase = await createClient();
   const { data: isAdmin } = await supabase.rpc("is_boulder_admin");
-
-  const SingleBoulderMap = dynamic(
-    () => import("@/components/kart/SingleBoulderMap"),
-    { ssr: false }
-  );
 
   // TODO: Behandle 404-feil
   if (boulder == null) {
