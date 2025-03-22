@@ -15,6 +15,7 @@ import {
   getOrCreateBoulderGroup,
   updateBoulder,
 } from "@/lib/supabase/data";
+import { formatDate } from "@/utils/utils";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { z } from "zod";
@@ -42,10 +43,8 @@ export default function BoulderForm({
 }) {
   const router = useRouter();
 
-  // const SingleBoulderMap = dynamic(
-  //   () => import("@/components/kart/SingleBoulderMap"),
-  //   { ssr: false }
-  // );
+  console.log("TIME", initialBoulder?.first_ascent);
+  console.log("TIME2", initialBoulder?.first_ascent?.toLocaleDateString());
 
   function initializeBoulderFormData(boulder: Boulder | null): BoulderFormData {
     return {
@@ -55,7 +54,7 @@ export default function BoulderForm({
       start: boulder?.start ?? DEFAULT_VALUE_START,
       status: boulder?.status ?? DEFAULT_VALUE_STATUS,
       first_ascender: boulder?.first_ascender ?? null,
-      first_ascent: boulder?.first_ascent?.toLocaleDateString() ?? null,
+      first_ascent: formatDate(boulder?.first_ascent),
       description: boulder?.description ?? "",
       latitude: boulder?.latitude ?? null,
       longitude: boulder?.longitude ?? null,

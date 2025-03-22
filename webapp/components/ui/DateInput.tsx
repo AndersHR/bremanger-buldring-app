@@ -17,7 +17,10 @@ export default function DateInput({
       <input
         type="date"
         value={value ?? ""}
-        onInput={(e) => onChange(e.currentTarget.value || null)}
+        onInput={(e) => {
+          console.log(e.currentTarget.value);
+          onChange(e.currentTarget.value || null);
+        }}
       />
     </InputWrapper>
   );
