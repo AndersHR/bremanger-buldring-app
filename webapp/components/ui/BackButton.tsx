@@ -13,6 +13,7 @@ export default function BackButton() {
     <IconButton
       size={"24px"}
       color={"var(--tertiary-color)"}
+      ariaLabel="Tilbake"
       onClick={handleBackClick}
       Icon={ArrowLeftCircle}
     />
