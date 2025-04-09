@@ -9,6 +9,9 @@ const nextConfig = {
   images: {
     domains: [supabaseUrl],
   },
+  experimental: {
+    optimizePackageImports: ["@chakra-ui/react"],
+  },
 };
 
 export default nextConfig;

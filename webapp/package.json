@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^3.14.2",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "@supabase/auth-ui-react": "^0.4.7",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/ssr": "^0.4.1",
@@ -16,11 +19,15 @@
     "date-fns": "^4.1.0",
     "firebase-tools": "^13.22.0",
     "form@latest": "link:next/form@latest",
+    "framer-motion": "^12.6.2",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
+    "lucide-react": "^0.484.0",
     "next": "14.2.15",
+    "next-themes": "^0.4.6",
     "react": "^18",
     "react-dom": "^18",
+    "react-icons": "^5.5.0",
     "react-leaflet": "^4.2.1",
     "supabase": "^1.204.3",
     "zod": "^3.24.1"

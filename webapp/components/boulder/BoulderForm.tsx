@@ -43,9 +43,6 @@ export default function BoulderForm({
 }) {
   const router = useRouter();
 
-  console.log("TIME", initialBoulder?.first_ascent);
-  console.log("TIME2", initialBoulder?.first_ascent?.toLocaleDateString());
-
   function initializeBoulderFormData(boulder: Boulder | null): BoulderFormData {
     return {
       name: boulder?.name ?? "",
