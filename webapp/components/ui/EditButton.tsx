@@ -10,6 +10,7 @@ export default function EditButton({ href }: { href: string }) {
       color="var(--tertiary-color)"
       Icon={Pencil}
       href={href}
+      ariaLabel="Rediger"
     />
   );
 }
