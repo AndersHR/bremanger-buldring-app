@@ -1,0 +1,48 @@
+/* Sidebar.module.css */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Initially hidden */
+  width: 250px;
+  height: 100vh;
+  background-color: #2d3748; /* Dark gray */
+  color: white;
+  transition: left 0.3s ease-in-out; /* Smooth sliding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  border-right: 4px solid teal;
+  z-index: 50; /* Ensure it's above the content */
+}
+
+.sidebarOpen {
+  left: 0; /* Sidebar is visible when open */
+}
+
+.menuButton {
+  border: 2px solid var(--quaternary-color);
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 100;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: var(--secondary-color);
+}
+
+.navItem:hover {
+  background-color: var(
+    --secondary-color-light
+  ); /* Darker background on hover */
+  cursor: pointer;
+}
+
+.navItem svg {
+  width: 20px;
+  height: 20px;
+}

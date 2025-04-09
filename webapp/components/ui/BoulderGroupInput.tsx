@@ -4,6 +4,7 @@ import {
   ErrorWithMessage,
 } from "@/lib/definitions";
 import { fetchFilteredBoulderGroups } from "@/lib/supabase/data";
+import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import IconButton from "./IconButton";
 import styles from "./ui.module.css";
@@ -119,12 +120,11 @@ export default function BoulderGroupInput({
               {createNew && <LabelCreateNew label={"Ny!"} />}
             </div>
             <IconButton
-              icon="/icons8-close-96.png"
+              Icon={X}
               ariaLabel="Fjern"
-              type="tertiary"
-              handleClick={handleCancelSelection}
-              height="var(--font-size-md)"
-              width="var(--font-size-md)"
+              color="var(--tertiary-color)"
+              onClick={handleCancelSelection}
+              size={"24px"}
             />
           </div>
         ) : (

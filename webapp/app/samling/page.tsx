@@ -1,7 +1,7 @@
 export default async function Page() {
   return (
     <div>
-      <p>TODO: Samlinger</p>
+      <p>Samlinger er enda ikke implementert</p>
     </div>
   );
 }

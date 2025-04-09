@@ -1,7 +1,7 @@
 "use client";
 
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
 export type OverviewMapProps = {
   height: string;

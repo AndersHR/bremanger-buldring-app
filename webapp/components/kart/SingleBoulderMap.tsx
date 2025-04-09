@@ -2,6 +2,8 @@
 
 import L, { LeafletMouseEvent } from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { MapPin } from "lucide-react";
+import { renderToStaticMarkup } from "react-dom/server";
 import {
   MapContainer,
   Marker,
@@ -32,14 +34,21 @@ const SingleBoulderMap = ({
   width,
   onClick,
 }: OverviewMapProps) => {
-  const markerIcon = new L.Icon({
-    iconUrl: "/softteal-tertiary-color/icons8-location-96-outline.png",
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32],
-  });
   const position: L.LatLngTuple =
     latitude && longitude ? [latitude, longitude] : [0, 0];
+
+  const createLucideDivIcon = () =>
+    L.divIcon({
+      className: "",
+      html: renderToStaticMarkup(
+        <MapPin color="var(--tertiary-color)" size={32} strokeWidth={2.5} />
+      ),
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32],
+    });
+
+  const markerIcon = createLucideDivIcon();
 
   const MapClickHandler = () => {
     useMapEvents({
