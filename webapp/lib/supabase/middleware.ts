@@ -1,5 +1,11 @@
 import { createServerClient } from "@supabase/ssr";
-import { type NextRequest, NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
+
+const PROTECTED_ROUTES: RegExp[] = [
+  /^\/minside$/,
+  /^\/bulder\/[^\/]+\/rediger$/,
+  /^\/bulder\/opprett$/,
+];
 
 export const createClient = (request: NextRequest) => {
   // Create an unmodified response
@@ -73,11 +79,11 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (
-    !user &&
-    !request.nextUrl.pathname.startsWith("/login") &&
-    !request.nextUrl.pathname.startsWith("/auth")
-  ) {
+  const isProtectedRoute = PROTECTED_ROUTES.some((regex) =>
+    regex.test(request.nextUrl.pathname)
+  );
+
+  if (!user && isProtectedRoute) {
     // no user, potentially respond by redirecting the user to the login page
     const url = request.nextUrl.clone();
     url.pathname = "/login";

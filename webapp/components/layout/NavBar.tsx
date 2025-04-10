@@ -3,13 +3,24 @@
 import { createClient } from "@/lib/supabase/supabaseClient";
 import { Box, Flex, IconButton, Link, Text } from "@chakra-ui/react";
 import { User as SupabaseUser } from "@supabase/supabase-js";
-import { Group, Home, LogOut, Menu, Mountain, User, X } from "lucide-react";
+import {
+  Group,
+  Home,
+  LogIn,
+  LogOut,
+  Menu,
+  Mountain,
+  User,
+  X,
+} from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from "./navBar.module.css";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState<SupabaseUser | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const supabase = createClient();
@@ -21,6 +32,13 @@ export default function NavBar() {
     };
     fetchUser();
   }, []);
+
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    setUser(null);
+    router.push("/");
+  };
 
   return (
     <Box
@@ -60,12 +78,18 @@ export default function NavBar() {
         <NavItem icon={Mountain} label="Buldere" href="/" />
         <NavItem icon={Group} label="Samlinger" href="/samling" />
 
-        {user && <Box borderBottom="2px solid white" width="100%" my="2" />}
+        <Box borderBottom="2px solid white" width="100%" my="2" />
 
-        {user && (
+        {user ? (
+          <NavItem icon={LogIn} label="Logg inn" href="/login" />
+        ) : (
           <>
             <NavItem icon={User} label="Min side" href="/minside" />
-            <NavItem icon={LogOut} label="Logg ut" href="/minside" />
+            <LogOutNavItem
+              icon={LogOut}
+              label="Logg ut"
+              handleLogout={handleLogout}
+            />
           </>
         )}
       </Flex>
@@ -87,5 +111,28 @@ function NavItem({
       <Box as={icon} />
       <Text>{label}</Text>
     </Link>
+  );
+}
+
+function LogOutNavItem({
+  icon,
+  label,
+  handleLogout,
+}: {
+  icon: React.ElementType;
+  label: string;
+  handleLogout: () => void;
+}) {
+  return (
+    <Box
+      className={styles.navItem}
+      as="button"
+      onClick={handleLogout}
+      display="flex"
+      alignItems="center"
+    >
+      <Box as={icon} />
+      <Text>{label}</Text>
+    </Box>
   );
 }
