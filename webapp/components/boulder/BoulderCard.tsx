@@ -79,29 +79,14 @@ function BoulderImage({ boulder }: { boulder: Boulder }) {
       <Image
         src={boulder.image_base_url || ""}
         alt={`Bilde av bulder ${boulder.name}`}
-        layout="fill"
-        objectFit="contain"
-        objectPosition="center"
+        fill
+        style={{
+          objectFit: "contain",
+          objectPosition: "center",
+        }}
         loading="lazy"
+        sizes="(max-width: 768px) 600px, (max-width: 1200px) 600px, 600px"
       />
     </div>
   );
-}
-
-{
-  /* <div className={styles.boulderImgWrapper}>
-        {isListMode ? (
-          <a href={`/bulder/${boulder.id}`}>
-            <img
-              src={boulder.image_base_url ? boulder.image_base_url : ""}
-              alt={`Bilde av bulder ${boulder.name}`}
-            />
-          </a>
-        ) : (
-          <img
-            src={boulder.image_base_url ? boulder.image_base_url : ""}
-            alt={`Bilde av bulder ${boulder.name}`}
-          />
-        )}
-      </div> */
 }
