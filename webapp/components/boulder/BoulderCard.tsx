@@ -27,7 +27,7 @@ export function BoulderCard({
         )}
       </div>
       {isListMode ? (
-        <a href={`/bulder/${boulder.id}`}>
+        <a className={styles.boulderImgLink} href={`/bulder/${boulder.id}`}>
           <BoulderImage boulder={boulder} />
         </a>
       ) : (

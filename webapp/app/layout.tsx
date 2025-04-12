@@ -1,5 +1,6 @@
 import Footer from "@/components/layout/Footer";
 import NavBar from "@/components/layout/NavBar";
+import { NavBarProvider } from "@/components/layout/NavBarContext";
 import { Provider } from "@/components/ui/provider";
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
@@ -25,16 +26,17 @@ export default function RootLayout({
     <html lang="no" suppressHydrationWarning>
       <body className={`${lato.className} antialiased`}>
         <Provider>
-          <div className={styles.background}>
-            {/* <HeaderWrapper /> */}
-            <NavBar />
-            <div className={styles.content}>
-              <div className={styles.pageLayout}>
-                <div className={styles.page}>{children}</div>
+          <NavBarProvider>
+            <div className={styles.background}>
+              <NavBar />
+              <div className={styles.content}>
+                <div className={styles.pageLayout}>
+                  <div className={styles.page}>{children}</div>
+                </div>
               </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
+          </NavBarProvider>
         </Provider>
       </body>
     </html>

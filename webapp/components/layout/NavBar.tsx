@@ -15,10 +15,11 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useNavBar } from "./NavBarContext";
 import styles from "./navBar.module.css";
 
 export default function NavBar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, setIsOpen } = useNavBar();
   const [user, setUser] = useState<SupabaseUser | null>(null);
   const router = useRouter();
 
@@ -81,8 +82,6 @@ export default function NavBar() {
         <Box borderBottom="2px solid white" width="100%" my="2" />
 
         {user ? (
-          <NavItem icon={LogIn} label="Logg inn" href="/login" />
-        ) : (
           <>
             <NavItem icon={User} label="Min side" href="/minside" />
             <LogOutNavItem
@@ -91,6 +90,8 @@ export default function NavBar() {
               handleLogout={handleLogout}
             />
           </>
+        ) : (
+          <NavItem icon={LogIn} label="Logg inn" href="/login" />
         )}
       </Flex>
     </Box>
