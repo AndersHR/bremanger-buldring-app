@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/lib/providers/AuthProvider";
 import { useNavBar } from "@/lib/providers/NavBarProvider";
-import { Box, Flex, IconButton, Link, Text } from "@chakra-ui/react";
+import { Box, Flex, IconButton, Link, Skeleton, Text } from "@chakra-ui/react";
 import {
   Group,
   Home,
@@ -17,7 +17,7 @@ import {
 import styles from "./navBar.module.css";
 
 export default function NavBar() {
-  const { user, isAdmin, logout } = useAuth();
+  const { user, isAdmin, logout, loading } = useAuth();
   const { isOpen, setIsOpen } = useNavBar();
 
   return (
@@ -60,7 +60,12 @@ export default function NavBar() {
 
         <Box borderBottom="2px solid white" width="100%" my="2" />
 
-        {user ? (
+        {loading ? (
+          <>
+            <NavItemSkeleton />
+            <NavItemSkeleton />
+          </>
+        ) : user ? (
           <>
             <NavItem icon={User} label="Min side" href="/minside" />
             <LogOutNavItem
@@ -102,6 +107,10 @@ function NavItem({
       <Text>{label}</Text>
     </Link>
   );
+}
+
+function NavItemSkeleton() {
+  return <Skeleton height="40px" color="var(--secondary-color-light)" my="1" />;
 }
 
 function LogOutNavItem({
