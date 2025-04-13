@@ -18,6 +18,7 @@ export type OverviewMapProps = {
   height: string;
   width: string;
   onClick?: (e: LeafletMouseEvent) => void;
+  popupContent?: string;
 };
 
 const esriWorldImageryTileLayer = (
@@ -27,15 +28,20 @@ const esriWorldImageryTileLayer = (
   />
 );
 
+const DEFAULT_POSITION: L.LatLngTuple = [61.7663141, 4.8756418];
+
 const SingleBoulderMap = ({
   latitude,
   longitude,
   height,
   width,
   onClick,
+  popupContent,
 }: OverviewMapProps) => {
   const position: L.LatLngTuple =
-    latitude && longitude ? [latitude, longitude] : [0, 0];
+    latitude !== null && longitude !== null
+      ? [latitude, longitude]
+      : DEFAULT_POSITION;
 
   const createLucideDivIcon = () =>
     L.divIcon({
@@ -63,19 +69,19 @@ const SingleBoulderMap = ({
 
   return (
     <div>
-      {latitude && longitude && (
-        <MapContainer
-          center={position}
-          zoom={16}
-          style={{ height: height, width: width }}
-        >
-          <MapClickHandler />
-          {esriWorldImageryTileLayer}
+      <MapContainer
+        center={position}
+        zoom={16}
+        style={{ height: height, width: width }}
+      >
+        <MapClickHandler />
+        {esriWorldImageryTileLayer}
+        {longitude && latitude && (
           <Marker position={position} icon={markerIcon}>
-            <Popup>Test</Popup>
+            {popupContent && <Popup>{popupContent}</Popup>}
           </Marker>
-        </MapContainer>
-      )}
+        )}
+      </MapContainer>
     </div>
   );
 };

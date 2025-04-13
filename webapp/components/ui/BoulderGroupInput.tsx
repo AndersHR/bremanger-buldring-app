@@ -33,6 +33,11 @@ export default function BoulderGroupInput({
   const [createNew, setCreateNew] = useState<boolean>(false);
 
   useEffect(() => {
+    setInputValue(boulderGroup?.name ?? "");
+    setCreateNew(false);
+  }, [boulderGroup]);
+
+  useEffect(() => {
     if (inputValue.trim() === "") {
       setShowDropdown(false);
       setFilteredBoulderGroups([]);

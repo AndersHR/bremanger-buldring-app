@@ -27,7 +27,7 @@ export default function NumberInput({
     <InputWrapper label={label} error={error}>
       <input
         type={"number"}
-        value={value ?? undefined}
+        value={value ?? ""}
         placeholder={placeholder}
         onChange={(e) => handleChange(e.target.value)}
         style={

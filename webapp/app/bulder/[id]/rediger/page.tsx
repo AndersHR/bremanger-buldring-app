@@ -19,11 +19,6 @@ export default async function Page({ params }: { params: { id: string } }) {
     ? await fetchBoulderGroupById(boulder.boulder_group_id)
     : null;
 
-  // const SingleBoulderMap = dynamic(
-  //   () => import("@/components/kart/SingleBoulderMap"),
-  //   { ssr: false }
-  // );
-
   // TODO: Behandle 404-feil
   if (boulder == null) {
     throw new Error("Boulder not found");

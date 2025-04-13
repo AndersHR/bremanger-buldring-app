@@ -88,6 +88,28 @@
   font-weight: var(--font-weight-bold);
 }
 
+.boulderFormTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block: var(--spacing-s);
+}
+
+.boulderFormTitle > h1 {
+  flex: 1;
+  font-size: var(--font-size-heading);
+  font-weight: var(--font-weight-bold);
+  margin-inline: var(--margin-xxs);
+  margin-block: var(--margin-xxs);
+}
+
+.formTitleDivider {
+  border: none;
+  border-top: 2px solid var(--secondary-color);
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .boulderForm {
   padding: var(--spacing-xs);
 }

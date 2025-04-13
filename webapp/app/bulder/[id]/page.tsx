@@ -25,6 +25,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             longitude={boulder.longitude}
             height="400px"
             width="100%"
+            popupContent={`${boulder.name} - ${boulder.grade}`}
           />
         </div>
       </div>

@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { z } from "zod";
 import SingleBoulderMap from "../kart/SingleBoulderMapWrapper";
+import BackButton from "../ui/BackButton";
 import BoulderGroupInput from "../ui/BoulderGroupInput";
 import Button, { ButtonMode } from "../ui/Button";
 import DateInput from "../ui/DateInput";
@@ -137,137 +138,144 @@ export default function BoulderForm({
   }
 
   return (
-    <form className={styles.boulderForm} onSubmit={handleSubmit}>
-      <TextInput
-        label="Navn"
-        value={formData.name}
-        placeholder="Navn"
-        onChange={(value) => setFormData({ ...formData, name: value })}
-        error={formatError(errors?.fieldErrors.name)}
-      />
-      <BoulderGroupInput
-        boulderGroup={boulderGroup?.boulderGroup ?? null}
-        onBoulderGroupChange={setBoulderGroup}
-      />
-      <SelectInput
-        label="Grad"
-        value={formData.grade.toString()}
-        values={Object.values(BoulderGrade)}
-        onChange={(value) => {
-          setFormData({ ...formData, grade: value as BoulderGrade });
-        }}
-        error={formatError(errors?.fieldErrors.grade)}
-      />
-      <SelectInput
-        label="Start"
-        value={formData.start.toString()}
-        values={Object.values(BoulderStart)}
-        onChange={(value) => {
-          setFormData({ ...formData, start: value as BoulderStart });
-        }}
-        error={formatError(errors?.fieldErrors.start)}
-      />
-      <SelectInput
-        label="Status"
-        value={formData.status.toString()}
-        values={Object.values(BoulderStatus)}
-        onChange={(value) => {
-          if (value === BoulderStatus.PROJECT) {
-            setFormData({
-              ...formData,
-              status: value as BoulderStatus,
-              first_ascender: initialBoulder?.first_ascender ?? null,
-              first_ascent:
-                initialBoulder?.first_ascent?.toLocaleDateString() ?? null,
-            });
-          } else {
-            setFormData({ ...formData, status: value as BoulderStatus });
-          }
-        }}
-        error={formatError(errors?.fieldErrors.status)}
-      />
-      {formData.status != BoulderStatus.PROJECT && (
-        <div>
-          <TextInput
-            label="Førstebestiger"
-            value={formData.first_ascender ?? ""}
-            placeholder="Førstebestiger"
-            onChange={(value) => {
-              if (value.trim() === "") {
-                setFormData({ ...formData, first_ascender: null });
-              } else {
-                setFormData({ ...formData, first_ascender: value });
-              }
-            }}
-            error={formatError(errors?.fieldErrors.first_ascender)}
-          />
-          <DateInput
-            label="Førstebestigning"
-            value={formData.first_ascent ?? undefined}
-            onChange={(value) =>
+    <div>
+      <form className={styles.boulderForm} onSubmit={handleSubmit}>
+        <div className={styles.boulderFormTitle}>
+          <BackButton />
+          <h1>{mode === "edit" ? "Rediger bulder" : "Opprett bulder"}</h1>
+        </div>
+        <hr className={styles.formTitleDivider} />
+        <TextInput
+          label="Navn"
+          value={formData.name}
+          placeholder="Navn"
+          onChange={(value) => setFormData({ ...formData, name: value })}
+          error={formatError(errors?.fieldErrors.name)}
+        />
+        <BoulderGroupInput
+          boulderGroup={boulderGroup?.boulderGroup ?? null}
+          onBoulderGroupChange={setBoulderGroup}
+        />
+        <SelectInput
+          label="Grad"
+          value={formData.grade.toString()}
+          values={Object.values(BoulderGrade)}
+          onChange={(value) => {
+            setFormData({ ...formData, grade: value as BoulderGrade });
+          }}
+          error={formatError(errors?.fieldErrors.grade)}
+        />
+        <SelectInput
+          label="Start"
+          value={formData.start.toString()}
+          values={Object.values(BoulderStart)}
+          onChange={(value) => {
+            setFormData({ ...formData, start: value as BoulderStart });
+          }}
+          error={formatError(errors?.fieldErrors.start)}
+        />
+        <SelectInput
+          label="Status"
+          value={formData.status.toString()}
+          values={Object.values(BoulderStatus)}
+          onChange={(value) => {
+            if (value === BoulderStatus.PROJECT) {
               setFormData({
                 ...formData,
-                first_ascent: value,
-              })
+                status: value as BoulderStatus,
+                first_ascender: initialBoulder?.first_ascender ?? null,
+                first_ascent:
+                  initialBoulder?.first_ascent?.toLocaleDateString() ?? null,
+              });
+            } else {
+              setFormData({ ...formData, status: value as BoulderStatus });
             }
-            error={formatError(errors?.fieldErrors.first_ascent)}
+          }}
+          error={formatError(errors?.fieldErrors.status)}
+        />
+        {formData.status != BoulderStatus.PROJECT && (
+          <div>
+            <TextInput
+              label="Førstebestiger"
+              value={formData.first_ascender ?? ""}
+              placeholder="Førstebestiger"
+              onChange={(value) => {
+                if (value.trim() === "") {
+                  setFormData({ ...formData, first_ascender: null });
+                } else {
+                  setFormData({ ...formData, first_ascender: value });
+                }
+              }}
+              error={formatError(errors?.fieldErrors.first_ascender)}
+            />
+            <DateInput
+              label="Førstebestigning"
+              value={formData.first_ascent ?? undefined}
+              onChange={(value) =>
+                setFormData({
+                  ...formData,
+                  first_ascent: value,
+                })
+              }
+              error={formatError(errors?.fieldErrors.first_ascent)}
+            />
+          </div>
+        )}
+        <TextInput
+          type="textarea"
+          label="Beskrivelse"
+          value={formData.description}
+          placeholder="Beskrivelse"
+          onChange={(value) => setFormData({ ...formData, description: value })}
+          error={formatError(errors?.fieldErrors.description)}
+        />
+        <div className={styles.boulderFromLatlongWrapper}>
+          <NumberInput
+            label="Lengdegrad"
+            placeholder="Lengdegrad"
+            value={formData.longitude}
+            onChange={(value) => setFormData({ ...formData, longitude: value })}
+            error={formatError(errors?.fieldErrors.longitude)}
+          />
+          <NumberInput
+            label="Breddegrad"
+            placeholder="Breddegrad"
+            value={formData.latitude}
+            onChange={(value) => setFormData({ ...formData, latitude: value })}
+            error={formatError(errors?.fieldErrors.latitude)}
           />
         </div>
-      )}
-      <TextInput
-        type="textarea"
-        label="Beskrivelse"
-        value={formData.description}
-        placeholder="Beskrivelse"
-        onChange={(value) => setFormData({ ...formData, description: value })}
-        error={formatError(errors?.fieldErrors.description)}
-      />
-      <div className={styles.boulderFromLatlongWrapper}>
-        <NumberInput
-          label="Lengdegrad"
-          placeholder="Lengdegrad"
-          value={formData.longitude}
-          onChange={(value) => setFormData({ ...formData, longitude: value })}
-          error={formatError(errors?.fieldErrors.longitude)}
-        />
-        <NumberInput
-          label="Breddegrad"
-          placeholder="Breddegrad"
-          value={formData.latitude}
-          onChange={(value) => setFormData({ ...formData, latitude: value })}
-          error={formatError(errors?.fieldErrors.latitude)}
-        />
-      </div>
-      <div className={styles.boulderFormButtonWrapper}>
-        <Button
-          type="submit"
-          text="Lagre"
-          mode={ButtonMode.tertiary}
-          onClick={() => handleSubmit}
+        <div className={styles.boulderFormButtonWrapper}>
+          <Button
+            type="submit"
+            text="Lagre"
+            mode={ButtonMode.tertiary}
+            onClick={() => handleSubmit}
+            width="100%"
+          />
+          <Button
+            type="button"
+            text="Tilbakestill"
+            mode={ButtonMode.primary}
+            onClick={handleReset}
+            width="100%"
+          />
+        </div>
+        <SingleBoulderMap
+          latitude={formData.latitude}
+          longitude={formData.longitude}
+          height="400px"
           width="100%"
+          onClick={(e) => {
+            setFormData({
+              ...formData,
+              latitude: e.latlng.lat,
+              longitude: e.latlng.lng,
+            });
+          }}
         />
-        <Button
-          type="button"
-          text="Tilbakestill"
-          mode={ButtonMode.primary}
-          onClick={handleReset}
-          width="100%"
-        />
-      </div>
-      <SingleBoulderMap
-        latitude={formData.latitude}
-        longitude={formData.longitude}
-        height="400px"
-        width="100%"
-        onClick={(e) => {
-          setFormData({
-            ...formData,
-            latitude: e.latlng.lat,
-            longitude: e.latlng.lng,
-          });
-        }}
-      />
-    </form>
+      </form>
+    </div>
   );
 }
 
