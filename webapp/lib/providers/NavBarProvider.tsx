@@ -2,8 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-const SIDEBAR_COOKIE_NAME = "sidebarOpen";
-const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7; // 1 week
+const SIDEBAR_STORAGE_KEY = "sidebarOpen";
 
 const NavBarContext = createContext<{
   isOpen: boolean;
@@ -19,23 +18,17 @@ export function NavBarProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!isInitialized) {
-      const cookies = document.cookie.split(";");
-      const sidebarCookie = cookies.find((cookie) =>
-        cookie.trim().startsWith(`${SIDEBAR_COOKIE_NAME}=`)
-      );
-
-      if (sidebarCookie) {
-        const sidebarState = sidebarCookie.split("=")[1];
-        setIsOpen(sidebarState === "true");
+      const stored = sessionStorage.getItem(SIDEBAR_STORAGE_KEY);
+      if (stored !== null) {
+        setIsOpen(stored === "true");
       }
-
       setIsInitialized(true);
     }
   }, [isInitialized]);
 
   useEffect(() => {
     if (isInitialized) {
-      document.cookie = `${SIDEBAR_COOKIE_NAME}=${isOpen}; max-age=${SIDEBAR_COOKIE_MAX_AGE}; path=/;`;
+      sessionStorage.setItem(SIDEBAR_STORAGE_KEY, String(isOpen));
     }
   }, [isOpen, isInitialized]);
 

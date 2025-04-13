@@ -1,7 +1,8 @@
 import Footer from "@/components/layout/Footer";
 import NavBar from "@/components/layout/NavBar";
-import { NavBarProvider } from "@/components/layout/NavBarContext";
 import { Provider } from "@/components/ui/provider";
+import { AuthProvider } from "@/lib/providers/AuthProvider";
+import { NavBarProvider } from "@/lib/providers/NavBarProvider";
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import "./globals.css";
@@ -38,17 +39,19 @@ export default function RootLayout({
     <html lang="no" suppressHydrationWarning>
       <body className={`${lato.className} antialiased`}>
         <Provider>
-          <NavBarProvider>
-            <div className={styles.background}>
-              <NavBar />
-              <div className={styles.content}>
-                <div className={styles.pageLayout}>
-                  <div className={styles.page}>{children}</div>
+          <AuthProvider>
+            <NavBarProvider>
+              <div className={styles.background}>
+                <NavBar />
+                <div className={styles.content}>
+                  <div className={styles.pageLayout}>
+                    <div className={styles.page}>{children}</div>
+                  </div>
                 </div>
+                <Footer />
               </div>
-              <Footer />
-            </div>
-          </NavBarProvider>
+            </NavBarProvider>
+          </AuthProvider>
         </Provider>
       </body>
     </html>

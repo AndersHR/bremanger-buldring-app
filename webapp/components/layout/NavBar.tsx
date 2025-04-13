@@ -1,8 +1,8 @@
 "use client";
 
-import { createClient } from "@/lib/supabase/supabaseClient";
+import { useAuth } from "@/lib/providers/AuthProvider";
+import { useNavBar } from "@/lib/providers/NavBarProvider";
 import { Box, Flex, IconButton, Link, Text } from "@chakra-ui/react";
-import { User as SupabaseUser } from "@supabase/supabase-js";
 import {
   Group,
   Home,
@@ -10,36 +10,15 @@ import {
   LogOut,
   Menu,
   Mountain,
+  Plus,
   User,
   X,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useNavBar } from "./NavBarContext";
 import styles from "./navBar.module.css";
 
 export default function NavBar() {
+  const { user, isAdmin, logout } = useAuth();
   const { isOpen, setIsOpen } = useNavBar();
-  const [user, setUser] = useState<SupabaseUser | null>(null);
-  const router = useRouter();
-
-  useEffect(() => {
-    const supabase = createClient();
-    const fetchUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      setUser(user);
-    };
-    fetchUser();
-  }, []);
-
-  const handleLogout = async () => {
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    setUser(null);
-    router.push("/");
-  };
 
   return (
     <Box
@@ -87,8 +66,18 @@ export default function NavBar() {
             <LogOutNavItem
               icon={LogOut}
               label="Logg ut"
-              handleLogout={handleLogout}
+              handleLogout={logout}
             />
+            {isAdmin && (
+              <>
+                <Box borderBottom="2px solid white" width="100%" my="2" />
+                <NavItem
+                  icon={Plus}
+                  label="Nytt bulder"
+                  href="/bulder/opprett"
+                />
+              </>
+            )}
           </>
         ) : (
           <NavItem icon={LogIn} label="Logg inn" href="/login" />
