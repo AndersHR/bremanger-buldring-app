@@ -15,6 +15,18 @@ const lato = Lato({
 export const metadata: Metadata = {
   title: "Bremanger Buldring",
   description: "Buldring i Bremanger og omegn.",
+  icons: {
+    icon: [
+      {
+        url: "/favicon-black.ico",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon-white.ico",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
