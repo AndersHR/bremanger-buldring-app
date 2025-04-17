@@ -2,6 +2,8 @@ import { BoulderTable } from "../components/boulder/BoulderTable";
 import { fetchBoulders } from "../lib/supabase/data";
 import styles from "./page.module.css";
 
+export const revalidate = 60;
+
 export default async function Home() {
   const boulders = await fetchBoulders();
   const uniqueBoulderGroupNames = Array.from(

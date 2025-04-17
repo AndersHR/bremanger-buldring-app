@@ -4,6 +4,8 @@ import SingleBoulderMap from "@/components/kart/SingleBoulderMapWrapper";
 import { fetchBoulderById } from "@/lib/supabase/data";
 import { createClient } from "@/lib/supabase/server";
 
+export const revalidate = 60;
+
 export default async function Page({ params }: { params: { id: string } }) {
   const boulder = await fetchBoulderById(params.id);
   const supabase = await createClient();
