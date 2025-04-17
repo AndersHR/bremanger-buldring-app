@@ -1,8 +1,8 @@
 import BackButton from "@/components/ui/BackButton";
 import { format } from "date-fns";
-import Image from "next/image";
 import { Boulder, BoulderStatus } from "../../lib/definitions";
 import EditButton from "../ui/EditButton";
+import BoulderImage from "./BoulderImage";
 import styles from "./boulder.module.css";
 
 export function BoulderCard({
@@ -69,24 +69,6 @@ function BoulderGroupLabel({ boulder }: { boulder: Boulder }) {
       <a href={`/samling/${boulder.boulder_group_id}`}>
         <i>{boulder.boulder_group_name}</i>
       </a>
-    </div>
-  );
-}
-
-function BoulderImage({ boulder }: { boulder: Boulder }) {
-  return (
-    <div className={styles.boulderImgWrapper}>
-      <Image
-        src={boulder.image_base_url || ""}
-        alt={`Bilde av bulder ${boulder.name}`}
-        fill
-        style={{
-          objectFit: "contain",
-          objectPosition: "center",
-        }}
-        loading="lazy"
-        sizes="(max-width: 768px) 600px, (max-width: 1200px) 600px, 600px"
-      />
     </div>
   );
 }

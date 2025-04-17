@@ -15,7 +15,6 @@ import {
   getOrCreateBoulderGroup,
   updateBoulder,
 } from "@/lib/supabase/data";
-import { formatDate } from "@/utils/utils";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { z } from "zod";
@@ -52,7 +51,7 @@ export default function BoulderForm({
       start: boulder?.start ?? DEFAULT_VALUE_START,
       status: boulder?.status ?? DEFAULT_VALUE_STATUS,
       first_ascender: boulder?.first_ascender ?? null,
-      first_ascent: formatDate(boulder?.first_ascent),
+      first_ascent: boulder?.first_ascent?.toString() ?? null,
       description: boulder?.description ?? "",
       latitude: boulder?.latitude ?? null,
       longitude: boulder?.longitude ?? null,
@@ -105,9 +104,6 @@ export default function BoulderForm({
       const boulderRaw: BoulderRaw = {
         ...data,
         boulder_group_id: boulderGroupId,
-        // We only want the image file names, not the full URL
-        image_base_url:
-          initialBoulder?.image_base_url?.split("/").pop() ?? null,
         image_line_url:
           initialBoulder?.image_line_url?.split("/").pop() ?? null,
       };
@@ -176,6 +172,19 @@ export default function BoulderForm({
             setFormData({ ...formData, start: value as BoulderStart });
           }}
           error={formatError(errors?.fieldErrors.start)}
+        />
+        <TextInput
+          label="Bilde"
+          value={formData.image_base_url ?? ""}
+          placeholder="Bilde"
+          onChange={(value) => {
+            if (value.trim() === "") {
+              setFormData({ ...formData, image_base_url: null });
+            } else {
+              setFormData({ ...formData, image_base_url: value });
+            }
+          }}
+          error={formatError(errors?.fieldErrors.image_base_url)}
         />
         <SelectInput
           label="Status"
@@ -308,6 +317,7 @@ const boulderFormSchema = z
     grade: z.nativeEnum(BoulderGrade, { message: "Ugyldig grad" }),
     start: z.nativeEnum(BoulderStart, { message: "Ugyldig starttype" }),
     status: z.nativeEnum(BoulderStatus, { message: "Ugyldig status" }),
+    image_base_url: z.string().trim().nullable(),
     first_ascender: z.string().trim().nullable(),
     first_ascent: z
       .string()
