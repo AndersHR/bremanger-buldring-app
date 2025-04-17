@@ -105,8 +105,11 @@ export default function BoulderForm({
       const boulderRaw: BoulderRaw = {
         ...data,
         boulder_group_id: boulderGroupId,
-        image_base_url: initialBoulder?.image_base_url ?? null,
-        image_line_url: initialBoulder?.image_line_url ?? null,
+        // We only want the image file names, not the full URL
+        image_base_url:
+          initialBoulder?.image_base_url?.split("/").pop() ?? null,
+        image_line_url:
+          initialBoulder?.image_line_url?.split("/").pop() ?? null,
       };
 
       if (mode === "create") {
