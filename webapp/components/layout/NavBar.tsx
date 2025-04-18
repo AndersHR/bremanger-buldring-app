@@ -1,24 +1,14 @@
 "use client";
 
 import { useAuth } from "@/lib/providers/AuthProvider";
-import { useNavBar } from "@/lib/providers/NavBarProvider";
 import { Box, Flex, IconButton, Link, Skeleton, Text } from "@chakra-ui/react";
-import {
-  Group,
-  Home,
-  LogIn,
-  LogOut,
-  Menu,
-  Mountain,
-  Plus,
-  User,
-  X,
-} from "lucide-react";
+import { Group, Home, LogIn, LogOut, Menu, Plus, X } from "lucide-react";
+import { useState } from "react";
 import styles from "./navBar.module.css";
 
 export default function NavBar() {
   const { user, isAdmin, logout, loading } = useAuth();
-  const { isOpen, setIsOpen } = useNavBar();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <Box
@@ -55,19 +45,19 @@ export default function NavBar() {
       </IconButton>
       <Flex direction="column" gap=".5">
         <NavItem icon={Home} label="Hjem" href="/" />
-        <NavItem icon={Mountain} label="Buldere" href="/" />
+        {/* <NavItem icon={Mountain} label="Buldere" href="/" /> */}
         <NavItem icon={Group} label="Samlinger" href="/samling" />
 
         <Box borderBottom="2px solid white" width="100%" my="2" />
 
         {loading ? (
           <>
-            <NavItemSkeleton />
+            {/* <NavItemSkeleton /> */}
             <NavItemSkeleton />
           </>
         ) : user ? (
           <>
-            <NavItem icon={User} label="Min side" href="/minside" />
+            {/* <NavItem icon={User} label="Min side" href="/minside" /> */}
             <LogOutNavItem
               icon={LogOut}
               label="Logg ut"
