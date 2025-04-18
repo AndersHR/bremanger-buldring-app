@@ -1,0 +1,18 @@
+.boulderGroupPage {
+  width: 100%;
+  display: block;
+  justify-content: center;
+  row-gap: var(--spacing-m);
+}
+
+.boulderGroupTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-black);
+  padding-block: var(--spacing-s);
+  border-bottom: 1px solid var(--quaternary-color);
+  background-color: var(--quaternary-color);
+  color: var(--primary-color);
+  padding-inline: var(--spacing-m);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-m);
+}
