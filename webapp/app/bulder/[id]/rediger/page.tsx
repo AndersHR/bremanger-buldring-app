@@ -1,6 +1,6 @@
 "use server";
 
-import styles from "@/app/page.module.css";
+import styles from "@/app/bulder/page.module.css";
 import BoulderForm from "@/components/boulder/BoulderForm";
 import { fetchBoulderById, fetchBoulderGroupById } from "@/lib/supabase/data";
 import { createClient } from "@/lib/supabase/server";
@@ -25,14 +25,12 @@ export default async function Page({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className={styles.page}>
-      <div className={styles.boulderView}>
-        <BoulderForm
-          initialBoulder={boulder}
-          initialBoulderGroup={boulderGroup}
-          mode="edit"
-        />
-      </div>
+    <div className={styles.boulderView}>
+      <BoulderForm
+        initialBoulder={boulder}
+        initialBoulderGroup={boulderGroup}
+        mode="edit"
+      />
     </div>
   );
 }
