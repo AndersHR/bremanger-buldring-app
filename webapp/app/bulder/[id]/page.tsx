@@ -1,16 +1,15 @@
 import styles from "@/app/bulder/page.module.css";
 import { BoulderCard } from "@/components/boulder/BoulderCard";
 import SingleBoulderMap from "@/components/kart/SingleBoulderMapWrapper";
+import { useAuth } from "@/lib/providers/AuthProvider";
 import { fetchBoulderById } from "@/lib/supabase/data";
-import { createClient } from "@/lib/supabase/server";
 
 export const revalidate = 60;
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const boulder = await fetchBoulderById(params.id);
-  const supabase = await createClient();
+  const { isAdmin } = useAuth();
 
-  const { data: isAdmin } = await supabase.rpc("is_boulder_admin");
+  const boulder = await fetchBoulderById(params.id);
 
   // TODO: Behandle 404-feil
   if (boulder == null) {

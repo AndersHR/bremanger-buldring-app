@@ -13,9 +13,11 @@ import { createClient } from "./supabaseClient";
 
 const supabase: SupabaseClient = createClient();
 
-export function fetchBoulderImagePublicUrl(image_url: string): string {
-  return supabase.storage.from("boulder_images").getPublicUrl(image_url).data
-    ?.publicUrl;
+export function fetchBoulderImagePublicUrl(
+  image_url: string,
+  bucket: string
+): string {
+  return supabase.storage.from(bucket).getPublicUrl(image_url).data?.publicUrl;
 }
 
 function mapBoulderResponse(data: BoulderResponse): Boulder {

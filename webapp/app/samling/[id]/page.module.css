@@ -1,18 +1,86 @@
 .boulderGroupPage {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
+}
+
+.heroCard {
+  background-color: var(--primary-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.heroImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 24rem;
+  /* aspect-ratio: 16 / 9; */
+  background-color: var(--primary-color-dark);
+  overflow: hidden;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
-  justify-content: center;
-  row-gap: var(--spacing-m);
+}
+
+.heroImageOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0),
+    transparent
+  );
+}
+
+.heroImageText {
+  padding: var(--spacing-xl);
+  color: var(--primary-color);
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .boulderGroupTitle {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-black);
-  padding-block: var(--spacing-s);
-  border-bottom: 1px solid var(--quaternary-color);
-  background-color: var(--quaternary-color);
-  color: var(--primary-color);
-  padding-inline: var(--spacing-m);
-  border-radius: var(--border-radius);
-  margin-bottom: var(--spacing-m);
+  text-decoration: none;
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s);
+}
+
+.infoTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+}
+
+.description {
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-normal);
+  color: var(--secondary-color);
+}
+
+.mapWrapper {
+  width: 100%;
+  height: 24rem;
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-xs);
 }

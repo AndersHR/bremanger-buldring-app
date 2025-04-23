@@ -12,7 +12,7 @@
 }
 
 .pageFeed h1 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-black);
   padding-block: var(--spacing-s);
   border-bottom: 1px solid var(--quaternary-color);
@@ -20,4 +20,9 @@
   color: var(--primary-color);
   padding-inline: var(--spacing-m);
   border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pageFeed h1:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }

@@ -96,6 +96,7 @@
 
   /* Border radius */
   --border-radius: 0.25rem;
+  --border-radius-lg: 0.5rem;
 
   /* Component specific variables */
   --input-border: 1px solid var(--secondary-color-light);

@@ -11,7 +11,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 16px;
   border-right: 4px solid teal;
-  z-index: 50; /* Ensure it's above the content */
+  z-index: 950; /* Ensure it's above the content */
 }
 
 .sidebarOpen {
@@ -23,7 +23,7 @@
   position: fixed;
   top: 16px;
   left: 16px;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .navItem {

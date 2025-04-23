@@ -1,5 +1,4 @@
 .content {
-  /* margin-top: var(--spacing-4xl); */
   flex-grow: 1;
 }
 
@@ -10,8 +9,6 @@
 }
 
 .page {
-  width: clamp(300px, 100vw, 800px);
-  /* margin-block: var(--spacing-m); */
+  width: clamp(300px, 100vw, 1000px);
   margin-inline: auto;
-  /* padding-inline: var(--spacing-m); */
 }

@@ -70,6 +70,7 @@ export type Boulder = BoulderRaw & {
 
 export type BoulderGroupRaw = {
   name: string;
+  image_url: string | null;
   description: string | null;
   latitude: number | null;
   longitude: number | null;
@@ -77,6 +78,10 @@ export type BoulderGroupRaw = {
 
 export type BoulderGroup = BoulderGroupRaw & {
   id: string;
+  // Metadata
+  created_at: Date | null;
+  updated_at: Date | null;
+  deleted_at: Date | null;
 };
 
 export type BoulderGroupWithBoulders = {

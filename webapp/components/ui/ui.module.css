@@ -29,6 +29,14 @@
   }
 }
 
+.pageHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block: var(--spacing-s);
+}
+
 /* Buttons and inputs */
 
 .button {
@@ -40,6 +48,11 @@
   padding-block: var(--spacing-xxs);
   padding-inline: var(--spacing-s);
   font-weight: var(--font-weight-bold);
+}
+
+.button:hover {
+  background-color: var(--primary-color-dark);
+  color: var(--primary-color);
 }
 
 .iconButton {
@@ -58,6 +71,11 @@
   overflow: hidden; /* Clip the pseudo-element to the button's size */
   position: relative;
   aspect-ratio: 1; /* Ensure the button is square */
+}
+
+.iconButton:hover {
+  background-color: var(--primary-color-dark);
+  color: var(--primary-color);
 }
 
 .iconButton:active::after {
@@ -253,4 +271,30 @@
 
 .navbar .iconButtonImage {
   margin-right: var(--spacing-xs);
+}
+
+.divider {
+  border: none;
+  border-top: 2px solid var(--secondary-color);
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.placeholderContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-color-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholderImageWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-color-lightest);
 }
