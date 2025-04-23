@@ -15,6 +15,28 @@ const lato = Lato({
 export const metadata: Metadata = {
   title: "Bremanger Buldring",
   description: "Buldring i Bremanger og omegn.",
+  openGraph: {
+    title: "Bremanger Buldring",
+    description: "Buldring i Bremanger og omegn.",
+    url: "https://www.bremangerbuldring.no",
+    siteName: "Bremanger Buldring",
+    images: [
+      {
+        url: "/bremangerbuldring.jpg",
+        width: 8160,
+        height: 6120,
+        alt: "Bilde av buldring i Bremanger",
+      },
+    ],
+    locale: "no_NO",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bremanger Buldring",
+    description: "Buldring i Bremanger og omegn.",
+    images: ["/bremangerbuldring.jpg"],
+  },
   icons: {
     icon: [
       {
