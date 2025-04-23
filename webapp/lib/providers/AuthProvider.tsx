@@ -9,7 +9,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { createClient } from "../supabase/supabaseClient";
+import { createClient } from "../supabase/browserClient";
 
 type AuthContextType = {
   user: User | null;

@@ -3,7 +3,7 @@ import {
   BoulderGroupRaw,
   ErrorWithMessage,
 } from "@/lib/definitions";
-import { fetchFilteredBoulderGroups } from "@/lib/supabase/data";
+import { fetchFilteredBoulderGroups } from "@/lib/supabase/data.client";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import IconButton from "./IconButton";
@@ -55,7 +55,7 @@ export default function BoulderGroupInput({
     const debounceFetch = setTimeout(fetchFilteredBoulderGroupResults, 300);
 
     return () => clearTimeout(debounceFetch);
-  }, [inputValue]);
+  }, [inputValue, boulderGroup]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);

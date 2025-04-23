@@ -3,7 +3,7 @@ import BackButton from "@/components/ui/BackButton";
 import Divider from "@/components/ui/Divider";
 import PageHeader from "@/components/ui/PageHeader";
 import { BoulderGroup } from "@/lib/definitions";
-import { fetchBoulderGroups } from "@/lib/supabase/data";
+import { fetchBoulderGroups } from "@/lib/supabase/data.client";
 import styles from "./page.module.css";
 
 export default async function Page() {
@@ -20,7 +20,12 @@ export default async function Page() {
       </div>
       <div className={styles.grid}>
         {boulderGroups.map((boulderGroup) => {
-          return <BoulderGroupCard boulderGroup={boulderGroup} />;
+          return (
+            <BoulderGroupCard
+              key={boulderGroup.id}
+              boulderGroup={boulderGroup}
+            />
+          );
         })}
       </div>
     </div>

@@ -2,7 +2,7 @@ import { Boulder, BoulderGroup } from "@/lib/definitions";
 import {
   fetchBoulderImagePublicUrl,
   fetchBouldersByBoulderGroupid,
-} from "@/lib/supabase/data";
+} from "@/lib/supabase/data.client";
 import Link from "next/link";
 import Image from "../ui/Image";
 import styles from "./boulderGroupCard.module.css";

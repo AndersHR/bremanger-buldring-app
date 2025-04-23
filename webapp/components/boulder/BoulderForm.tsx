@@ -14,7 +14,7 @@ import {
   createBoulder,
   getOrCreateBoulderGroup,
   updateBoulder,
-} from "@/lib/supabase/data";
+} from "@/lib/supabase/data.client";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { z } from "zod";

@@ -1,4 +1,4 @@
-import { fetchBoulderImagePublicUrl } from "@/lib/supabase/data";
+import { fetchBoulderImagePublicUrl } from "@/lib/supabase/data.client";
 import { Boulder } from "../../lib/definitions";
 import Image from "../ui/Image";
 import styles from "./boulder.module.css";

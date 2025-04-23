@@ -2,8 +2,11 @@
 
 import styles from "@/app/bulder/page.module.css";
 import BoulderForm from "@/components/boulder/BoulderForm";
-import { fetchBoulderById, fetchBoulderGroupById } from "@/lib/supabase/data";
-import { createClient } from "@/lib/supabase/server";
+import {
+  fetchBoulderById,
+  fetchBoulderGroupById,
+} from "@/lib/supabase/data.client";
+import { createClient } from "@/lib/supabase/serverClient";
 import { redirect } from "next/navigation";
 
 export default async function Page({ params }: { params: { id: string } }) {

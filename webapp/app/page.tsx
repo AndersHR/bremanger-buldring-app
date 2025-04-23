@@ -1,5 +1,5 @@
 import { BoulderTable } from "../components/boulder/BoulderTable";
-import { fetchBoulders } from "../lib/supabase/data";
+import { fetchBoulders } from "../lib/supabase/data.client";
 import styles from "./page.module.css";
 
 export const revalidate = 60;

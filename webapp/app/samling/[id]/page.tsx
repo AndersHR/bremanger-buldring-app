@@ -5,17 +5,17 @@ import EditButton from "@/components/ui/EditButton";
 import Image from "@/components/ui/Image";
 import PageHeader from "@/components/ui/PageHeader";
 import { Boulder, BoulderGroup } from "@/lib/definitions";
-import { useAuth } from "@/lib/providers/AuthProvider";
 import {
   fetchBoulderGroupById,
   fetchBouldersByBoulderGroupid,
-} from "@/lib/supabase/data";
+} from "@/lib/supabase/data.client";
+import { fetchIsAdmin } from "@/lib/supabase/data.server";
 import styles from "./page.module.css";
 
 export const revalidate = 30;
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const { isAdmin } = useAuth();
+  const { data: isAdmin } = await fetchIsAdmin();
 
   const boulderGroup: BoulderGroup | null = await fetchBoulderGroupById(
     params.id

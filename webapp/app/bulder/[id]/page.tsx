@@ -1,13 +1,13 @@
 import styles from "@/app/bulder/page.module.css";
 import { BoulderCard } from "@/components/boulder/BoulderCard";
 import SingleBoulderMap from "@/components/kart/SingleBoulderMapWrapper";
-import { useAuth } from "@/lib/providers/AuthProvider";
-import { fetchBoulderById } from "@/lib/supabase/data";
+import { fetchBoulderById } from "@/lib/supabase/data.client";
+import { fetchIsAdmin } from "@/lib/supabase/data.server";
 
 export const revalidate = 60;
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const { isAdmin } = useAuth();
+  const { data: isAdmin } = await fetchIsAdmin();
 
   const boulder = await fetchBoulderById(params.id);
 

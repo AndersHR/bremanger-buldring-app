@@ -1,6 +1,6 @@
 import styles from "@/app/bulder/page.module.css";
 import BoulderForm from "@/components/boulder/BoulderForm";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/serverClient";
 import { redirect } from "next/navigation";
 
 export default async function Page() {

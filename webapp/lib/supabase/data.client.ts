@@ -9,7 +9,7 @@ import {
   BoulderStatus,
 } from "@/lib/definitions";
 import { PostgrestResponse, SupabaseClient } from "@supabase/supabase-js";
-import { createClient } from "./supabaseClient";
+import { createClient } from "./browserClient";
 
 const supabase: SupabaseClient = createClient();
 

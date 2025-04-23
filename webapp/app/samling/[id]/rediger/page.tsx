@@ -1,3 +1,3 @@
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page() {
   return <div>Ikke implementert</div>;
 }

@@ -1,5 +1,5 @@
 import { Boulder, BoulderGroup } from "@/lib/definitions";
-import { fetchBoulderImagePublicUrl } from "@/lib/supabase/data";
+import { fetchBoulderImagePublicUrl } from "@/lib/supabase/data.client";
 
 export const formatDate = (date?: Date | null): string | null => {
   return date ? date.toISOString().split("T")[0] : null;
