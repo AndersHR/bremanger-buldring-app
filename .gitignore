@@ -130,3 +130,7 @@ dist
 .pnp.*
 
 .DS_Store
+
+# robots.txt and sitemap
+webapp/public/robots.txt
+webapp/public/sitemap*.xml
