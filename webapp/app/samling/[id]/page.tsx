@@ -9,14 +9,13 @@ import {
   fetchBoulderGroupById,
   fetchBouldersByBoulderGroupid,
 } from "@/lib/supabase/data.client";
-import { createClient } from "@/lib/supabase/serverClient";
+import { fetchIsAdmin } from "@/lib/supabase/data.server";
 import styles from "./page.module.css";
 
 export const revalidate = 30;
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const supabase = await createClient();
-  const { data: isAdmin } = await supabase.rpc("is_boulder_admin");
+  const { data: isAdmin } = await fetchIsAdmin();
 
   const boulderGroup: BoulderGroup | null = await fetchBoulderGroupById(
     params.id
