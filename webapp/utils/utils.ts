@@ -15,3 +15,10 @@ export function getBoulderGroupImageUrl(
     ? fetchBoulderImagePublicUrl(boulders[0].image_base_url, "boulder_images")
     : "";
 }
+
+export function getCssVariable(name: string) {
+  if (typeof window === "undefined") return undefined;
+  return getComputedStyle(document.documentElement)
+    .getPropertyValue(name)
+    .trim();
+}

@@ -1,0 +1,55 @@
+.loginPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.card {
+  width: 100%;
+  max-width: 28rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  margin-top: var(--spacing-m);
+  margin-inline: var(--spacing-m);
+  border-radius: var(--border-radius-lg);
+  border: 1.5px solid var(--secondary-color-light);
+}
+
+.cardHeaderAndContent {
+  margin: var(--spacing-l);
+}
+
+.cardHeader {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.cardHeader > h1 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-black);
+}
+
+.cardHeaderText {
+  color: var(--secondary-color-light);
+  font-weight: var(--font-weight-regular);
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.cardContent {
+  padding-top: var(--spacing-s);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s);
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: center;
+  border-top: 0.5px solid var(--secondary-color-lightest);
+  padding-inline: var(--spacing-l);
+  padding-block: var(--spacing-m);
+  color: var(--secondary-color-light);
+  font-weight: var(--font-weight-light);
+}

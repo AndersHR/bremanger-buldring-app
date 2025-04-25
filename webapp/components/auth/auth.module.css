@@ -1,0 +1,11 @@
+.authContainer {
+  min-height: "42px";
+  width: 100%;
+}
+
+.authButton {
+  display: block;
+  min-height: 100%;
+  border: 1px solid var(--secondary-color-lighter);
+  border-radius: var(--border-radius);
+}
