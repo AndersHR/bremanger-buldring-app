@@ -2,6 +2,7 @@ import Footer from "@/components/layout/Footer";
 import NavBar from "@/components/layout/NavBar";
 import { Provider } from "@/components/ui/provider";
 import { AuthProvider } from "@/lib/providers/AuthProvider";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import "./globals.css";
@@ -72,6 +73,7 @@ export default function RootLayout({
             </div>
           </AuthProvider>
         </Provider>
+        <Analytics />
       </body>
     </html>
   );
